@@ -23,6 +23,7 @@ import Plans from './pages/Plans';
 import ChannelPlayer from './pages/ChannelPlayer';
 import VODPlayer from './pages/VODPlayer';
 import DashboardPage from './pages/DashboardPage';
+import Categories from './pages/Categories';
 
 function App() {
   return (
@@ -75,6 +76,12 @@ function App() {
                     <PrivateRoute>
                       <VODPlayer />
                     </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/categories"
+                  element={
+                    <Categories />
                   }
                 />
               </Routes>

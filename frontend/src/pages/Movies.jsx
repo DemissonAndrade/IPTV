@@ -72,7 +72,8 @@ const Movies = () => {
             <Grid item xs={12} sm={6} md={4} key={movie.id} sx={{ display: 'flex', justifyContent: 'center' }}>
               <Card
                 sx={{
-                  width: 240,
+                  width: '100%',
+                  maxWidth: 240,
                   backgroundColor: '#1e1e1e',
                   color: 'white',
                   borderRadius: 3,
