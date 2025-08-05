@@ -84,10 +84,6 @@ const Header = () => {
 
   const renderDesktopMenu = (
     <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, flexGrow: 1, ml: 3 }}>
-      <NavButton onClick={() => handleNavigate('/quem-somos')}>
-        Quem Somos
-      </NavButton>
-
       <NavButton onClick={() => handleNavigate('/movies')}>
         Filmes
       </NavButton>
@@ -134,7 +130,6 @@ const Header = () => {
           }
         }}
       >
-        <MenuItem onClick={() => handleNavigate('/quem-somos')}>Quem Somos</MenuItem>
         <MenuItem onClick={() => handleNavigate('/movies')}>Filmes</MenuItem>
         <MenuItem onClick={() => handleNavigate('/series')}>Séries</MenuItem>
         <MenuItem onClick={() => handleNavigate('/channels')}>TV ao Vivo</MenuItem>
@@ -213,7 +208,6 @@ const Header = () => {
                 variant="body1" 
                 sx={{ 
                   mr: 2,
-                  display: { xs: 'none', sm: 'block' },
                   maxWidth: 120,
                   overflow: 'hidden',
                   textOverflow: 'ellipsis',

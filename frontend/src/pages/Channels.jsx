@@ -147,7 +147,7 @@ const theme = createTheme({
 
 const ChannelsPage = () => {
   const { isAuthenticated, user, logout } = useAuth();
-  
+
   // Estados
   const [channels, setChannels] = useState({});
   const [categories, setCategories] = useState([]);
@@ -196,7 +196,7 @@ const ChannelsPage = () => {
         setLoading(false);
       }
     };
-    
+
     loadData();
   }, [filters, pagination.page, isAuthenticated]);
 
@@ -512,41 +512,6 @@ const ChannelsPage = () => {
             <Typography variant="h4" component="h1" sx={{ fontWeight: 500 }}>
               StreamFlux
             </Typography>
-          </Box>
-          
-          <Box>
-            {!isAuthenticated ? (
-              <>
-                <Button 
-                  variant="outlined" 
-                  color="inherit" 
-                  sx={{ mr: 2 }}
-                  onClick={() => {/* navegação para login */}}
-                >
-                  Login
-                </Button>
-                <Button 
-                  variant="contained" 
-                  color="secondary"
-                  onClick={() => {/* navegação para registro */}}
-                >
-                  Registrar
-                </Button>
-              </>
-            ) : (
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <Typography variant="body1" sx={{ mr: 2 }}>
-                  Olá, {user?.name}
-                </Typography>
-                <Button 
-                  variant="outlined" 
-                  color="inherit"
-                  onClick={logout}
-                >
-                  Sair
-                </Button>
-              </Box>
-            )}
           </Box>
         </Paper>
 

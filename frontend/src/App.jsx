@@ -24,6 +24,10 @@ import ChannelPlayer from './pages/ChannelPlayer';
 import VODPlayer from './pages/VODPlayer';
 import DashboardPage from './pages/DashboardPage';
 import Categories from './pages/Categories';
+import About from './pages/About';
+import Careers from './pages/Careers';
+import Press from './pages/Press';
+import Support from './pages/Support';
 
 function App() {
   return (
@@ -34,56 +38,26 @@ function App() {
           <div className="App" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
             <Header />
             <Navbar />
-            <Container component="main" sx={{ flex: 1, mt: 2 }}>
+            <Container component="main" sx={{ flex: 1, mt: '80px' }}>
               <Routes>
                 <Route path="/" element={<DashboardPage />} />
                 <Route path="/home" element={<PrivateRoute><DashboardPage /></PrivateRoute>} />
                 {/* Removendo rota /loginPage pois LoginPage não é necessária */}
                 { <Route path="/login" element={<LoginPage/>} />}
-                <Route
-                  path="/dashboard"
-                  element={
-                    <PrivateRoute>
-                      <DashboardPage />
-                    </PrivateRoute>
-                  }
-                />
+                <Route path="/dashboard" element={<PrivateRoute><DashboardPage /></PrivateRoute>} />
                 <Route path="/register" element={<Register />} />
-                <Route
-                  path="/channels"
-                  element={
-                    <Channels />
-                  }
-                />
-                <Route
-                  path="/movies"
-                  element={
-                    <Movies />
-                  }
-                />
-                <Route
-                  path="/series"
-                  element={
-                    <Series />
-                  }
-                />
+                <Route path="/channels" element={<Channels />} />
+                <Route path="/movies" element={<Movies />} />
+                <Route path="/series" element={<Series />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/plans" element={<Plans />} />
                 <Route path="/channel/:channelId" element={<ChannelPlayer />} />
-                <Route
-                  path="/vod/:contentId"
-                  element={
-                    <PrivateRoute>
-                      <VODPlayer />
-                    </PrivateRoute>
-                  }
-                />
-                <Route
-                  path="/categories"
-                  element={
-                    <Categories />
-                  }
-                />
+                <Route path="/vod/:contentId" element={<PrivateRoute><VODPlayer /></PrivateRoute>} />
+                <Route path="/categories" element={<Categories />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/careers" element={<Careers />} />
+                <Route path="/press" element={<Press />} />
+                <Route path="/support" element={<Support />} />
               </Routes>
             </Container>
             <Footer />

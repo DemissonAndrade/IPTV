@@ -23,22 +23,22 @@ const Footer = () => {
 
   const footerLinks = {
     'Sobre': [
-      { text: 'Quem Somos', href: '/about' },
-      { text: 'Carreiras', href: '/careers' },
-      { text: 'Imprensa', href: '/press' },
-      { text: 'Blog', href: '/blog' },
+      { text: 'Quem Somos', href: '/about', description: 'Conheça nossa missão, visão e valores. Somos dedicados a oferecer a melhor experiência de streaming para você.' },
+      { text: 'Carreiras', href: '/careers', description: 'Junte-se à nossa equipe e faça parte de um ambiente inovador e dinâmico.' },
+      { text: 'Imprensa', href: '/press', description: 'Para solicitações de imprensa e informações oficiais sobre a empresa.' },
+      { text: 'Blog', href: '/blog', description: 'Fique por dentro das novidades, dicas e conteúdos exclusivos.' },
     ],
     'Suporte': [
-      { text: 'Central de Ajuda', href: '/help' },
-      { text: 'Contato', href: '/contact' },
-      { text: 'Status do Serviço', href: '/status' },
-      { text: 'Reportar Problema', href: '/report' },
+      { text: 'Central de Ajuda', href: '/help', description: 'Encontre respostas para as dúvidas mais comuns e tutoriais.' },
+      { text: 'Contato', href: '/contact', description: 'Fale conosco para suporte personalizado e atendimento ao cliente.' },
+      { text: 'Status do Serviço', href: '/status', description: 'Verifique o status atual dos nossos serviços e eventuais interrupções.' },
+      { text: 'Reportar Problema', href: '/report', description: 'Informe qualquer problema técnico ou falha que você tenha encontrado.' },
     ],
     'Legal': [
-      { text: 'Termos de Uso', href: '/terms' },
-      { text: 'Política de Privacidade', href: '/privacy' },
-      { text: 'Cookies', href: '/cookies' },
-      { text: 'DMCA', href: '/dmca' },
+      { text: 'Termos de Uso', href: '/terms', description: 'Leia os termos e condições para uso do serviço.' },
+      { text: 'Política de Privacidade', href: '/privacy', description: 'Entenda como protegemos seus dados pessoais.' },
+      { text: 'Cookies', href: '/cookies', description: 'Saiba mais sobre o uso de cookies em nosso site.' },
+      { text: 'DMCA', href: '/dmca', description: 'Informações sobre direitos autorais e políticas DMCA.' },
     ],
   };
 
@@ -75,25 +75,45 @@ const Footer = () => {
             >
               IPTV Pro
             </Typography>
-            <Typography variant="body2" sx={{ mb: 2, color: 'text.secondary' }}>
-              A melhor plataforma de streaming de TV e filmes do Brasil. 
-              Assista aos seus canais favoritos, filmes e séries em alta qualidade, 
+
+            <Typography variant="body2" sx={{ mb: 1.5, color: 'text.secondary' }}>
+              A melhor plataforma de streaming de TV e filmes do Brasil.  
+              Assista aos seus canais favoritos, filmes e séries em alta qualidade,  
               quando e onde quiser.
             </Typography>
-            
+
+            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+              Na IPTV Pro, oferecemos estabilidade, suporte 24h e compatibilidade com os principais dispositivos.  
+              Nossa missão é transformar a forma como você assiste TV.
+            </Typography>
+
+            <Link
+              href="/about"
+              sx={{
+                display: 'inline-block',
+                mt: 1,
+                fontSize: '0.8rem',
+                textDecoration: 'underline',
+                color: 'primary.main',
+                '&:hover': { color: 'primary.light' },
+              }}
+            >
+              Saiba mais sobre nós →
+            </Link>
+
             {/* Informações de contato */}
-            <Box sx={{ mb: 2 }}>
+            <Box sx={{ mt: 2, mb: 2 }}>
               <Box sx={{ display: 'flex', alignItems: 'center', mb: 0.5 }}>
                 <Email sx={{ mr: 1, fontSize: 16 }} />
                 <Typography variant="body2">contato@iptvpro.com.br</Typography>
               </Box>
               <Box sx={{ display: 'flex', alignItems: 'center', mb: 0.5 }}>
                 <Phone sx={{ mr: 1, fontSize: 16 }} />
-                <Typography variant="body2">(11) 9999-9999</Typography>
+                <Typography variant="body2">(61) 99295-1411</Typography>
               </Box>
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <LocationOn sx={{ mr: 1, fontSize: 16 }} />
-                <Typography variant="body2">São Paulo, SP - Brasil</Typography>
+                <Typography variant="body2">Luziânia, GO - Brasil</Typography>
               </Box>
             </Box>
 
@@ -168,7 +188,7 @@ const Footer = () => {
           <Grid item xs={12} md={6}>
             <Box sx={{ display: 'flex', justifyContent: { xs: 'flex-start', md: 'flex-end' } }}>
               <Typography variant="body2" sx={{ color: 'text.secondary', mr: 1, fontSize: '0.75rem' }}>
-                Desenvolvido por Manus AI
+                Desenvolvido por Demisson Andrade
               </Typography>
               <Typography variant="body2" sx={{ color: 'text.secondary', fontSize: '0.75rem' }}>
                 v1.0.0
@@ -187,8 +207,8 @@ const Footer = () => {
               lineHeight: 1.4,
             }}
           >
-            Este serviço é destinado apenas para conteúdo licenciado e autorizado. 
-            O uso indevido pode resultar na suspensão da conta. 
+            Este serviço é destinado apenas para conteúdo licenciado e autorizado.  
+            O uso indevido pode resultar na suspensão da conta.  
             Consulte nossos Termos de Uso para mais informações.
           </Typography>
         </Box>
@@ -198,4 +218,3 @@ const Footer = () => {
 };
 
 export default Footer;
-

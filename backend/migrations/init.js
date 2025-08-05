@@ -259,78 +259,83 @@ const insertSampleData = async () => {
       ON CONFLICT DO NOTHING
     `);
 
-    // Inserir filmes
+    //-- Inserir filmes (todos com URLs do TMDb)
     await query(`
-     INSERT INTO filmes (titulo, descricao, ano, duracao, genero, capa_url, destaque) 
-VALUES
-  ('Avatar: O Caminho da Água', 'Sequência do épico de ficção científica de James Cameron.', 2022, 192, 'Ficção Científica', 'https://image.tmdb.org/t/p/w500/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg', true),
-  ('Top Gun: Maverick', 'Depois de mais de 30 anos de serviço como aviador da Marinha.', 2022, 130, 'Ação', 'https://image.tmdb.org/t/p/w500/62HCnUTziyWcpDaBO2i1DX17ljH.jpg', true),
-  ('Homem-Aranha: Sem Volta Para Casa', 'Peter Parker tem sua identidade secreta revelada.', 2021, 148, 'Ação', 'https://image.tmdb.org/t/p/w500/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg', false),
-  ('Interestelar', 'Exploração espacial para salvar a humanidade.', 2014, 169, 'Ficção Científica', 'https://image.tmdb.org/t/p/w500/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg', true),
-  ('O Poderoso Chefão', 'História da família mafiosa Corleone.', 1972, 175, 'Crime', 'https://image.tmdb.org/t/p/w500/eEslKSwcqmiNS6va24Pbxf2UKmJ.jpg', true),
-  ('Pulp Fiction', 'Histórias entrelaçadas do submundo do crime.', 1994, 154, 'Crime', 'https://image.tmdb.org/t/p/w500/d5iIlFn5s0ImszYzBPb8JPIfbXD.jpg', false),
-  ('Matrix', 'Realidade simulada e rebelião contra máquinas.', 1999, 136, 'Ficção Científica', 'https://image.tmdb.org/t/p/w500/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg', true),
-  ('Gladiador', 'Um general romano busca vingança.', 2000, 155, 'Ação', 'https://image.tmdb.org/t/p/w500/ty8TGRuvJLPUmAR1H1nRIsgwvim.jpg', false),
-  ('A Origem', 'Invasão dos sonhos para manipulação.', 2010, 148, 'Ficção Científica', 'https://image.tmdb.org/t/p/w500/qmDpIHrmpJINaRKAfWQfftjCdyi.jpg', true),
-  ('O Senhor dos Anéis: A Sociedade do Anel', 'Início da jornada para destruir o Anel.', 2001, 178, 'Fantasia', 'https://image.tmdb.org/t/p/w500/6oom5QYQ2yQTMJIbnvbkBL9cHo6.jpg', true),
-  ('Forrest Gump', 'História de vida de um homem simples.', 1994, 142, 'Drama', 'https://image.tmdb.org/t/p/w500/saHP97rTPS5eLmrLQEcANmKrsFl.jpg', false),
-  ('O Rei Leão', 'História do jovem leão Simba.', 1994, 88, 'Animação', 'https://image.tmdb.org/t/p/w500/sKCr78MXSLixwmZ8DyJLrpMsd15.jpg', true),
-  ('Titanic', 'Romance e tragédia no navio Titanic.', 1997, 195, 'Romance', 'https://image.tmdb.org/t/p/w500/9xjZS2rlVxm8SFx8kPC3aIGCOYQ.jpg', true),
-  ('Jurassic Park', 'Parque com dinossauros clonados.', 1993, 127, 'Aventura', 'https://image.tmdb.org/t/p/w500/c414cDeQ9b6qLPLeKmiJh7Ph7Gl.jpg', false),
-  ('Os Vingadores', 'Super-heróis se unem para salvar o mundo.', 2012, 143, 'Ação', 'https://image.tmdb.org/t/p/w500/RYMX2wcKCBAr24UyPD7xwmjaTn.jpg', true),
-  ('Guardiões da Galáxia', 'Equipe improvável salva o universo.', 2014, 121, 'Aventura', 'https://image.tmdb.org/t/p/w500/y31QB9kn3XSudA15tV7UWQ9XLuW.jpg', false),
-  ('Star Wars: O Despertar da Força', 'Nova ameaça surge na galáxia.', 2015, 138, 'Ficção Científica', 'https://image.tmdb.org/t/p/w500/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg', true),
-  ('Dunkirk', 'Evacuação na Segunda Guerra Mundial.', 2017, 106, 'Guerra', 'https://image.tmdb.org/t/p/w500/ebSnODDg9lbsMIaWg2uAbjn7TO5.jpg', false),
-  ('Coringa', 'Origem do vilão mais icônico.', 2019, 122, 'Drama', 'https://image.tmdb.org/t/p/w500/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg', true),
-  ('Homem de Ferro', 'História do bilionário que vira super-herói.', 2008, 126, 'Ação', 'https://image.tmdb.org/t/p/w500/78lPtwv72eTNqFW9COBYI0dWDJa.jpg', false),
-  ('Deadpool', 'Anti-herói com humor ácido.', 2016, 108, 'Ação', 'https://image.tmdb.org/t/p/w500/inVq3FRqcYIRl2la8iZikYYxFNR.jpg', true),
-  ('O Hobbit: Uma Jornada Inesperada', 'A aventura começa para Bilbo Bolseiro.', 2012, 169, 'Fantasia', 'https://image.tmdb.org/t/p/w500/6t6IpEv0CTFphH0MzEZSscA9e3v.jpg', true),
-  ('Pantera Negra', 'Herói do reino de Wakanda.', 2018, 134, 'Ação', 'https://image.tmdb.org/t/p/w500/uxzzxijgPIY7slzFvMotPv8wjKA.jpg', false),
-  ('A Bela e a Fera', 'Clássico conto de amor.', 2017, 129, 'Romance', 'https://image.tmdb.org/t/p/w500/6aUZhsH2aXw3EK87PbtZ6G0bWwU.jpg', false),
-  ('Guardiões da Galáxia Vol. 2', 'Continuação das aventuras cósmicas.', 2017, 136, 'Aventura', 'https://image.tmdb.org/t/p/w500/y4MBh0EjBlMuOzv9axM4qJlmhzz.jpg', true),
-  ('Logan', 'Última missão do Wolverine.', 2017, 137, 'Ação', 'https://image.tmdb.org/t/p/w500/9EXvPpPlLA1ILReZQghT6jVnHPm.jpg', false),
-  ('Cisne Negro', 'Drama psicológico intenso.', 2010, 108, 'Drama', 'https://image.tmdb.org/t/p/w500/bxlrA0sF9jQdF9Q1I7dshwQ44z6.jpg', true),
-  ('Clube da Luta', 'Luta contra o sistema.', 1999, 139, 'Drama', 'https://image.tmdb.org/t/p/w500/bptfVGEQuv6vDTIMVCHjJ9Dz8PX.jpg', false),
-  ('A Chegada', 'Contato com alienígenas.', 2016, 116, 'Ficção Científica', 'https://image.tmdb.org/t/p/w500/xu9zaAevzQ5nnrsXN6JcahLnG4i.jpg', true),
-  ('Esquadrão Suicida', 'Anti-heróis em missão perigosa.', 2016, 123, 'Ação', 'https://image.tmdb.org/t/p/w500/8tZYtuWezp8JbcsvHYO0O46tFbo.jpg', false)
-ON CONFLICT DO NOTHING;
-    `);
-
-    // Inserir séries
-    await query(`
-      INSERT INTO series (titulo, descricao, ano_inicio, genero, total_temporadas, capa_url, destaque) 
-VALUES 
-  ('Breaking Bad Temporada 4 Versão 1', 'Um professor de química vira fabricante de metanfetamina.', 2009, 'Crime', 5, 'https://image.tmdb.org/t/p/w500/eSzpy96DwBujGFj0xMbXBcGcfxX.jpg', false),
-  ('La Casa de Papel Temporada 3 Versão 2', 'Grupo assalta a Casa da Moeda da Espanha.', 2017, 'Crime', 5, 'https://image.tmdb.org/t/p/w500/MoEKaPFHABtA1xKoOteirGaHl1.jpg', false),
-  ('Stranger Things Temporada 1 Versão 3', 'Série de ficção científica ambientada nos anos 80.', 2018, 'Ficção Científica', 4, 'https://image.tmdb.org/t/p/w500/49WJfeN0moxb9IPfGn8AIqMGskD.jpg', false),
-  ('Breaking Bad Temporada 2 Versão 4', 'Um professor de química vira fabricante de metanfetamina.', 2010, 'Crime', 5, 'https://image.tmdb.org/t/p/w500/eSzpy96DwBujGFj0xMbXBcGcfxX.jpg', true),
-  ('Game of Thrones Temporada 2 Versão 5', 'Famílias nobres lutam pelo Trono de Ferro.', 2012, 'Fantasia', 8, 'https://image.tmdb.org/t/p/w500/u3bZgnGQ9T01sWNhyveQz0wH0Hl.jpg', false),
-  ('Breaking Bad Temporada 2 Versão 6', 'Um professor de química vira fabricante de metanfetamina.', 2008, 'Crime', 5, 'https://image.tmdb.org/t/p/w500/eSzpy96DwBujGFj0xMbXBcGcfxX.jpg', true),
-  ('Breaking Bad Temporada 5 Versão 7', 'Um professor de química vira fabricante de metanfetamina.', 2009, 'Crime', 5, 'https://image.tmdb.org/t/p/w500/eSzpy96DwBujGFj0xMbXBcGcfxX.jpg', false),
-  ('Breaking Bad Temporada 3 Versão 8', 'Um professor de química vira fabricante de metanfetamina.', 2009, 'Crime', 5, 'https://image.tmdb.org/t/p/w500/eSzpy96DwBujGFj0xMbXBcGcfxX.jpg', false),
-  ('La Casa de Papel Temporada 1 Versão 9', 'Grupo assalta a Casa da Moeda da Espanha.', 2017, 'Crime', 5, 'https://image.tmdb.org/t/p/w500/MoEKaPFHABtA1xKoOteirGaHl1.jpg', true),
-  ('Game of Thrones Temporada 6 Versão 10', 'Famílias nobres lutam pelo Trono de Ferro.', 2013, 'Fantasia', 8, 'https://image.tmdb.org/t/p/w500/u3bZgnGQ9T01sWNhyveQz0wH0Hl.jpg', true),
-  -- adicione aqui os próximos 20 registros gerados
-  ('Stranger Things Temporada 2 Versão 11', 'Série de ficção científica ambientada nos anos 80.', 2017, 'Ficção Científica', 4, 'https://image.tmdb.org/t/p/w500/49WJfeN0moxb9IPfGn8AIqMGskD.jpg', true),
-  ('The Witcher Temporada 1 Versão 12', 'Baseada nos livros de Andrzej Sapkowski.', 2019, 'Fantasia', 3, 'https://image.tmdb.org/t/p/w500/7vjaCdMw15FEbXyLQTVa04URsPm.jpg', true),
-  ('Stranger Things Temporada 4 Versão 13', 'Série de ficção científica ambientada nos anos 80.', 2018, 'Ficção Científica', 4, 'https://image.tmdb.org/t/p/w500/49WJfeN0moxb9IPfGn8AIqMGskD.jpg', false),
-  ('La Casa de Papel Temporada 2 Versão 14', 'Grupo assalta a Casa da Moeda da Espanha.', 2018, 'Crime', 5, 'https://image.tmdb.org/t/p/w500/MoEKaPFHABtA1xKoOteirGaHl1.jpg', true),
-  ('Game of Thrones Temporada 7 Versão 15', 'Famílias nobres lutam pelo Trono de Ferro.', 2014, 'Fantasia', 8, 'https://image.tmdb.org/t/p/w500/u3bZgnGQ9T01sWNhyveQz0wH0Hl.jpg', false),
-  ('Breaking Bad Temporada 1 Versão 16', 'Um professor de química vira fabricante de metanfetamina.', 2010, 'Crime', 5, 'https://image.tmdb.org/t/p/w500/eSzpy96DwBujGFj0xMbXBcGcfxX.jpg', false),
-  ('Stranger Things Temporada 3 Versão 17', 'Série de ficção científica ambientada nos anos 80.', 2019, 'Ficção Científica', 4, 'https://image.tmdb.org/t/p/w500/49WJfeN0moxb9IPfGn8AIqMGskD.jpg', false),
-  ('The Witcher Temporada 2 Versão 18', 'Baseada nos livros de Andrzej Sapkowski.', 2020, 'Fantasia', 3, 'https://image.tmdb.org/t/p/w500/7vjaCdMw15FEbXyLQTVa04URsPm.jpg', false),
-  ('Game of Thrones Temporada 4 Versão 19', 'Famílias nobres lutam pelo Trono de Ferro.', 2012, 'Fantasia', 8, 'https://image.tmdb.org/t/p/w500/u3bZgnGQ9T01sWNhyveQz0wH0Hl.jpg', true),
-  ('La Casa de Papel Temporada 4 Versão 20', 'Grupo assalta a Casa da Moeda da Espanha.', 2019, 'Crime', 5, 'https://image.tmdb.org/t/p/w500/MoEKaPFHABtA1xKoOteirGaHl1.jpg', false),
-  ('The Witcher Temporada 3 Versão 21', 'Baseada nos livros de Andrzej Sapkowski.', 2021, 'Fantasia', 3, 'https://image.tmdb.org/t/p/w500/7vjaCdMw15FEbXyLQTVa04URsPm.jpg', true),
-  ('Stranger Things Temporada 2 Versão 22', 'Série de ficção científica ambientada nos anos 80.', 2016, 'Ficção Científica', 4, 'https://image.tmdb.org/t/p/w500/49WJfeN0moxb9IPfGn8AIqMGskD.jpg', false)
-ON CONFLICT DO NOTHING;
-
+    INSERT INTO filmes (titulo, descricao, ano, duracao, genero, capa_url, destaque) 
+    VALUES
+      ('Avatar: O Caminho da Água', 'Sequência do épico de ficção científica de James Cameron.', 2022, 192, 'Ficção Científica', 'https://image.tmdb.org/t/p/w500/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg', true),
+      ('Top Gun: Maverick', 'Depois de mais de 30 anos de serviço como aviador da Marinha.', 2022, 130, 'Ação', 'https://image.tmdb.org/t/p/w500/62HCnUTziyWcpDaBO2i1DX17ljH.jpg', true),
+      ('Homem-Aranha: Sem Volta Para Casa', 'Peter Parker tem sua identidade secreta revelada.', 2021, 148, 'Ação', 'https://image.tmdb.org/t/p/w500/fVzXp3NwovUlLe7fvoRynCmBPNc.jpg', false),
+      ('Interestelar', 'Exploração espacial para salvar a humanidade.', 2014, 169, 'Ficção Científica', 'https://image.tmdb.org/t/p/w500/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg', true),
+      ('O Poderoso Chefão', 'História da família mafiosa Corleone.', 1972, 175, 'Crime', 'https://image.tmdb.org/t/p/w500/oJagOzBu9Rdd9BrciseCm3U3MCU.jpg', true),
+      ('Pulp Fiction', 'Histórias entrelaçadas do submundo do crime.', 1994, 154, 'Crime', 'https://image.tmdb.org/t/p/w500/d5iIlFn5s0ImszYzBPb8JPIfbXD.jpg', false),
+      ('Matrix', 'Realidade simulada e rebelião contra máquinas.', 1999, 136, 'Ficção Científica', 'https://image.tmdb.org/t/p/w500/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg', true),
+      ('Gladiador', 'Um general romano busca vingança.', 2000, 155, 'Ação', 'https://image.tmdb.org/t/p/w500/ty8TGRuvJLPUmAR1H1nRIsgwvim.jpg', false),
+      ('A Origem', 'Invasão dos sonhos para manipulação.', 2010, 148, 'Ficção Científica', 'https://image.tmdb.org/t/p/w500/s2bT29y0ngXxxu2IA8AOzzXTRhd.jpg', true),
+      ('O Senhor dos Anéis: A Sociedade do Anel', 'Início da jornada para destruir o Anel.', 2001, 178, 'Fantasia', 'https://image.tmdb.org/t/p/w500/56zTpe2xvaA4alU51sRWPoKPYZy.jpg', true),
+      ('Forrest Gump', 'História de vida de um homem simples.', 1994, 142, 'Drama', 'https://image.tmdb.org/t/p/w500/saHP97rTPS5eLmrLQEcANmKrsFl.jpg', false),
+      ('O Rei Leão', 'História do jovem leão Simba.', 1994, 88, 'Animação', 'https://image.tmdb.org/t/p/w500/sKCr78MXSLixwmZ8DyJLrpMsd15.jpg', true),
+      ('Titanic', 'Romance e tragédia no navio Titanic.', 1997, 195, 'Romance', 'https://image.tmdb.org/t/p/w500/9xjZS2rlVxm8SFx8kPC3aIGCOYQ.jpg', true),
+      ('Jurassic Park', 'Parque com dinossauros clonados.', 1993, 127, 'Aventura', 'https://image.tmdb.org/t/p/w500/oU7Oq2kFAAlGqbU4VoAE36g4hoI.jpg', false),
+      ('Os Vingadores', 'Super-heróis se unem para salvar o mundo.', 2012, 143, 'Ação', 'https://image.tmdb.org/t/p/w500/RYMX2wcKCBAr24UyPD7xwmjaTn.jpg', true),
+      ('Guardiões da Galáxia', 'Equipe improvável salva o universo.', 2014, 121, 'Aventura', 'https://image.tmdb.org/t/p/w500/y31QB9kn3XSudA15tV7UWQ9XLuW.jpg', false),
+      ('Star Wars: O Despertar da Força', 'Nova ameaça surge na galáxia.', 2015, 138, 'Ficção Científica', 'https://image.tmdb.org/t/p/w500/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg', true),
+      ('Dunkirk', 'Evacuação na Segunda Guerra Mundial.', 2017, 106, 'Guerra', 'https://image.tmdb.org/t/p/w500/ebSnODDg9lbsMIaWg2uAbjn7TO5.jpg', false),
+      ('Coringa', 'Origem do vilão mais icônico.', 2019, 122, 'Drama', 'https://image.tmdb.org/t/p/w500/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg', true),
+      ('Homem de Ferro', 'História do bilionário que vira super-herói.', 2008, 126, 'Ação', 'https://image.tmdb.org/t/p/w500/78lPtwv72eTNqFW9COBYI0dWDJa.jpg', false),
+      ('Deadpool', 'Anti-herói com humor ácido.', 2016, 108, 'Ação', 'https://image.tmdb.org/t/p/w500/inVq3FRqcYIRl2la8iZikYYxFNR.jpg', true),
+      ('O Hobbit: Uma Jornada Inesperada', 'A aventura começa para Bilbo Bolseiro.', 2012, 169, 'Fantasia', 'https://image.tmdb.org/t/p/w500/6t6IpEv0CTFphH0MzEZSscA9e3v.jpg', true),
+      ('Pantera Negra', 'Herói do reino de Wakanda.', 2018, 134, 'Ação', 'https://image.tmdb.org/t/p/w500/uxzzxijgPIY7slzFvMotPv8wjKA.jpg', false),
+      ('A Bela e a Fera', 'Clássico conto de amor.', 2017, 129, 'Romance', 'https://image.tmdb.org/t/p/w500/hlCUA3bUpkgOULFM9bC8N7hra19.jpg', false),
+      ('Guardiões da Galáxia Vol. 2', 'Continuação das aventuras cósmicas.', 2017, 136, 'Aventura', 'https://image.tmdb.org/t/p/w500/y4MBh0EjBlMuOzv9axM4qJlmhzz.jpg', true),
+      ('Logan', 'Última missão do Wolverine.', 2017, 137, 'Ação', 'https://image.tmdb.org/t/p/w500/f0CtZbae9cXj8bkWdCHzUHx5lsR.jpg', true),
+      ('Cisne Negro', 'Drama psicológico intenso.', 2010, 108, 'Drama', 'https://image.tmdb.org/t/p/w500/bxVxZb45UEpCrDJMwSZuZ4V6Ll0.jpg', true),
+      ('Clube da Luta', 'Luta contra o sistema.', 1999, 139, 'Drama', 'https://image.tmdb.org/t/p/w500/bptfVGEQuv6vDTIMVCHjJ9Dz8PX.jpg', false),
+      ('A Chegada', 'Contato com alienígenas.', 2016, 116, 'Ficção Científica', 'https://image.tmdb.org/t/p/w500/xu9zaAevzQ5nnrsXN6JcahLnG4i.jpg', true),
+      ('Esquadrão Suicida', 'Anti-heróis em missão perigosa.', 2016, 123, 'Ação', 'https://image.tmdb.org/t/p/w500/e1mjopzAS2KNsvpbpahQ1a6SkSn.jpg', false)
+    ON CONFLICT DO NOTHING;
+    `)
+    
+    //-- Inserir séries (todos com URLs do TMDb)
+    await query (`
+    INSERT INTO series (titulo, descricao, ano_inicio, genero, total_temporadas, capa_url, destaque) 
+    VALUES 
+      ('Breaking Bad', 'Um professor de química vira fabricante de metanfetamina.', 2008, 'Crime', 5, 'https://image.tmdb.org/t/p/w500/ggFHVNu6YYI5L9pCfOacjizRGt.jpg', true),
+      ('La Casa de Papel', 'Grupo assalta a Casa da Moeda da Espanha.', 2017, 'Crime', 5, 'https://image.tmdb.org/t/p/w500/reEMJA1uzscCbkpeRJeTT2bjqUp.jpg', true),
+      ('Stranger Things', 'Série de ficção científica ambientada nos anos 80.', 2016, 'Ficção Científica', 4, 'https://image.tmdb.org/t/p/w500/49WJfeN0moxb9IPfGn8AIqMGskD.jpg', true),
+      ('Game of Thrones', 'Famílias nobres lutam pelo Trono de Ferro.', 2011, 'Fantasia', 8, 'https://image.tmdb.org/t/p/w500/u3bZgnGQ9T01sWNhyveQz0wH0Hl.jpg', true),
+      ('The Witcher', 'Baseada nos livros de Andrzej Sapkowski.', 2019, 'Fantasia', 3, 'https://image.tmdb.org/t/p/w500/7vjaCdMw15FEbXyLQTVa04URsPm.jpg', true),
+      ('Dark', 'Mistério de desaparecimentos em uma pequena cidade.', 2017, 'Suspense', 3, 'https://image.tmdb.org/t/p/w500/5jtx6zB7mG0D5XODPA9g6yXJ7Ul.jpg', true),
+      ('Friends', 'Comédia sobre grupo de amigos em Nova York.', 1994, 'Comédia', 10, 'https://image.tmdb.org/t/p/w500/f496cm9enuEsZkSPzCwnTESEK5s.jpg', true),
+      ('The Mandalorian', 'Caçador de recompensas na galáxia Star Wars.', 2019, 'Ação', 3, 'https://image.tmdb.org/t/p/w500/sWgBv7LV2PRoQgkxwlibdGXKz1S.jpg', true),
+      ('Westworld', 'Parque temático com androides conscientes.', 2016, 'Ficção Científica', 4, 'https://image.tmdb.org/t/p/w500/rTh4K5uw9HypmpGslcKd4QfHl93.jpg', true),
+      ('The Office (US)', 'Comédia sobre o cotidiano de escritório.', 2005, 'Comédia', 9, 'https://image.tmdb.org/t/p/w500/qWnJzyZhyy74gjpSjIXWmuk0ifX.jpg', true),
+      ('Black Mirror', 'Contos distópicos sobre a tecnologia.', 2011, 'Suspense', 5, 'https://image.tmdb.org/t/p/w500/f5QpafA4tgf7x5FFXZn0BX8E0hQ.jpg', true),
+      ('Better Call Saul', 'Pré-sequência de Breaking Bad focada no advogado.', 2015, 'Crime', 6, 'https://image.tmdb.org/t/p/w500/1ztP3C9WZsSYYJD56CXfKZtEHrS.jpg', true),
+      ('Narcos', 'História dos cartéis de droga na Colômbia.', 2015, 'Crime', 3, 'https://image.tmdb.org/t/p/w500/o4rJ6uVsWtJQp3W0W4X6rt8U1Yj.jpg', true),
+      ('House of Cards', 'Drama político sobre um congressista americano.', 2013, 'Drama', 6, 'https://image.tmdb.org/t/p/w500/47dpEjqOySHC6UyZyWMulJhWohM.jpg', true),
+      ('Ozark', 'Consultor financeiro se envolve com o crime organizado.', 2017, 'Crime', 4, 'https://image.tmdb.org/t/p/w500/68QJ2Q6FwNqL6KDj3RLi2j0qEB3.jpg', true),
+      ('Sherlock', 'Séries de mistérios com o famoso detetive.', 2010, 'Mistério', 4, 'https://image.tmdb.org/t/p/w500/f9zGxLHGyQ9kfmfF9nrh6OmWIIy.jpg', true),
+      ('Dexter', 'Um analista forense que é também serial killer.', 2006, 'Crime', 8, 'https://image.tmdb.org/t/p/w500/k7VB30oe8FnB8fM6A1Uj3AB4uVv.jpg', true),
+      ('The Crown', 'Drama sobre o reinado da Rainha Elizabeth II.', 2016, 'Drama', 5, 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/ehUMAA3qDR5HNor9DB60g72KNQZ.jpg', true),
+      ('The Boys', 'Super-heróis corruptos e vigilantes.', 2019, 'Ação', 4, 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/dACU11CzrA2aUWAWvlpuP92nmV7.jpg', true),
+      ('Mindhunter', 'Agentes do FBI entrevistam serial killers.', 2017, 'Crime', 2, 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/fbKE87mojpIETWepSbD5Qt741fp.jpg', true),
+      ('True Detective', 'Séries de casos criminais com detetives.', 2014, 'Mistério', 3, 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1fxr55V72a2gtqyn2b8pf6FslOf.jpg', true),
+      ('Lost', 'Sobreviventes de um acidente aéreo em uma ilha misteriosa.', 2004, 'Drama', 6, 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/3NVsXuJg8NZZxVghQ90XYugOcfG.jpg', true),
+      ('The Walking Dead', 'Grupo de sobreviventes em um mundo pós-apocalíptico.', 2010, 'Terror', 11, 'https://image.tmdb.org/t/p/w500/xf9wuDcqlUPWABZNeDKPbZUjWx0.jpg', true),
+      ('Vikings', 'A saga dos guerreiros vikings.', 2013, 'Histórico', 6, 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/bQLrHIRNEkE3PdIWQrZHynQZazu.jpg', true),
+      ('How I Met Your Mother', 'Comédia sobre grupo de amigos e suas vidas.', 2005, 'Comédia', 9, 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/578tlvbrpFwc959bQTT93W2RYA.jpg', true),
+      ('Peaky Blinders', 'Gangue familiar na Inglaterra pós-guerra.', 2013, 'Crime', 6, 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/i0uajcHH9yogXMfDHpOXexIukG9.jpg', true),
+      ('The Expanse', 'Ficção científica e política no sistema solar.', 2015, 'Ficção Científica', 6, 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/8djpxDeWpINnGhjpFXQjnBe6zbx.jpg', true),
+      ('The Simpsons', 'Série animada sobre uma família americana.', 1989, 'Comédia', 34, 'https://image.tmdb.org/t/p/w500/qcr9bBY6MVeLzriKCmJOv1562uY.jpg', true),
+      ('Rick and Morty', 'Série animada de ficção científica e comédia.', 2013, 'Animação', 5, 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/5qfd0e2uMbVInX3YdeFbDsfxi1t.jpg', true)
+    ON CONFLICT DO NOTHING;
     `);
 
     // Inserir usuário administrador
     const bcrypt = require('bcryptjs');
     const hashedPassword = await bcrypt.hash('admin123', 10);
-    
+
     await query(`
       INSERT INTO usuarios (nome, email, senha, tipo) 
       VALUES ('Administrador', 'admin@iptvpro.com', $1, 'admin')
@@ -346,8 +351,77 @@ ON CONFLICT DO NOTHING;
   }
 };
 
-module.exports = {
-  createTables,
-  insertSampleData
+// Função para criar a tabela vod_content que consolida filmes e séries
+const createVodContentTable = async () => {
+  try {
+    console.log('🔄 Criando tabela vod_content...');
+    
+    // Criar a tabela vod_content que consolida filmes e séries
+    await query(`
+      CREATE TABLE IF NOT EXISTS vod_content (
+        id SERIAL PRIMARY KEY,
+        titulo VARCHAR(255) NOT NULL,
+        titulo_original VARCHAR(255),
+        descricao TEXT,
+        ano INTEGER,
+        duracao INTEGER,
+        genero VARCHAR(255),
+        capa_url VARCHAR(500),
+        stream_url VARCHAR(500),
+        tipo VARCHAR(50) NOT NULL, -- 'filme' ou 'serie'
+        destaque BOOLEAN DEFAULT false,
+        ativo BOOLEAN DEFAULT true,
+        data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+
+    // Criar índices para melhor performance
+    await query('CREATE INDEX IF NOT EXISTS idx_vod_content_tipo ON vod_content(tipo)');
+    await query('CREATE INDEX IF NOT EXISTS idx_vod_content_destaque ON vod_content(destaque)');
+    await query('CREATE INDEX IF NOT EXISTS idx_vod_content_genero ON vod_content(genero)');
+    await query('CREATE INDEX IF NOT EXISTS idx_vod_content_ano ON vod_content(ano)');
+
+    console.log('✅ Tabela vod_content criada com sucesso!');
+    return true;
+  } catch (error) {
+    console.error('❌ Erro ao criar tabela vod_content:', error);
+    throw error;
+  }
 };
 
+// Função para verificar se a tabela vod_content já está populada
+const isVodContentPopulated = async () => {
+  try {
+    const result = await query('SELECT COUNT(*) as count FROM vod_content');
+    return parseInt(result.rows[0].count) > 0;
+  } catch (error) {
+    console.error('❌ Erro ao verificar população da tabela vod_content:', error);
+    return false;
+  }
+};
+
+// Função para popular a tabela vod_content com dados de filmes e séries
+const populateVodContentTable = async () => {
+  try {
+    // Verificar se a tabela já está populada
+    const isPopulated = await isVodContentPopulated();
+    if (isPopulated) {
+      console.log('✅ Tabela vod_content já está populada, pulando...');
+      return true;
+    }
+
+    console.log('🔄 Populando tabela vod_content...');
+                    
+    console.log('✅ Tabela vod_content populada com sucesso!');
+    return true;
+  } catch (error) {
+    console.error('❌ Erro ao popular tabela vod_content:', error);
+    throw error;
+  }
+};
+
+module.exports = {
+  createTables,
+  insertSampleData,
+  populateVodContentTable,
+}

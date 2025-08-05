@@ -14,7 +14,9 @@ import {
   Stack,
   Avatar,
   Divider,
-  Badge
+  Collapse,
+  ListItemIcon,
+  ListItemText
 } from '@mui/material';
 import {
   Menu as MenuIcon,
@@ -22,11 +24,12 @@ import {
   LiveTv as LiveTvIcon,
   Theaters as TheatersIcon,
   Category as CategoryIcon,
-  AccountCircle as AccountIcon,
   ExitToApp as LogoutIcon,
   Login as LoginIcon,
   HowToReg as RegisterIcon,
-  Search as SearchIcon
+  Search as SearchIcon,
+  ExpandMore,
+  ExpandLess
 } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
@@ -43,21 +46,20 @@ const StyledAppBar = styled(AppBar, {
   transition: 'all 0.3s ease-in-out',
   backdropFilter: scrolled ? 'blur(8px)' : 'none',
   [theme.breakpoints.down('sm')]: {
-    borderRadius: 0,
     padding: theme.spacing(0.25, 0)
-  },
-  [theme.breakpoints.up('sm')]: {
-    borderRadius: '0 0 16px 16px',
   }
 }));
 
 const StyledMenu = styled(Menu)(({ theme }) => ({
   '& .MuiPaper-root': {
     borderRadius: 12,
-    minWidth: 200,
+    minWidth: 240,
+    maxWidth: 'calc(100vw - 32px)',
+    maxHeight: 'calc(100vh - 64px)',
+    overflowY: 'auto',
     boxShadow: '0 8px 24px rgba(0, 0, 0, 0.15)',
     '& .MuiMenuItem-root': {
-      padding: theme.spacing(1.5, 2),
+      padding: theme.spacing(1, 2),
       transition: 'all 0.2s ease',
       '&:hover': {
         backgroundColor: alpha(theme.palette.primary.main, 0.1),
@@ -150,8 +152,27 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [anchorElCat, setAnchorElCat] = useState(null);
   const [mobileMenuAnchor, setMobileMenuAnchor] = useState(null);
+  const [expandedCategories, setExpandedCategories] = useState({
+    filmes: false,
+    series: false,
+    tv: false
+  });
 
-  const categorias = ['Ação', 'Comédia', 'Drama', 'Ficção Científica', 'Terror', 'Romance', 'Documentário'];
+  // Estrutura de categorias com subcategorias
+  const categorias = {
+    filmes: {
+      icon: <MovieIcon />,
+      subcategorias: ['Ação', 'Comédia', 'Drama', 'Ficção Científica', 'Terror', 'Romance', 'Animação']
+    },
+    series: {
+      icon: <TheatersIcon />,
+      subcategorias: ['Drama', 'Comédia', 'Suspense', 'Crime', 'Fantasia', 'Histórico', 'Documentário']
+    },
+    tv: {
+      icon: <LiveTvIcon />,
+      subcategorias: ['Notícias', 'Esportes', 'Infantil', 'Variedades', 'Música', 'Cultura', 'Religião']
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -184,6 +205,13 @@ const Navbar = () => {
     navigate('/login');
   };
 
+  const toggleCategory = (category) => {
+    setExpandedCategories(prev => ({
+      ...prev,
+      [category]: !prev[category]
+    }));
+  };
+
   const renderDesktopMenu = (
     <Stack 
       direction="row" 
@@ -199,13 +227,6 @@ const Navbar = () => {
         scrollbarWidth: 'none'
       }}
     >
-      <NavButton 
-        startIcon={<AccountIcon />} 
-        onClick={() => handleNavigate('/quem-somos')}
-      >
-        Quem Somos
-      </NavButton>
-
       <NavButton 
         startIcon={<MovieIcon />} 
         onClick={() => handleNavigate('/movies')}
@@ -255,8 +276,9 @@ const Navbar = () => {
         onClick={handleMobileMenuOpen}
         sx={{ 
           mr: 1,
-          [theme.breakpoints.down('sm')]: {
-            padding: '6px'
+          padding: '6px',
+          '&:hover': {
+            backgroundColor: alpha(theme.palette.common.white, 0.1)
           }
         }}
       >
@@ -270,23 +292,25 @@ const Navbar = () => {
         anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
         transformOrigin={{ vertical: 'top', horizontal: 'left' }}
       >
-        <MenuItem onClick={() => handleNavigate('/quem-somos')}>
-          <AccountIcon sx={{ mr: 1.5 }} /> Quem Somos
-        </MenuItem>
         <MenuItem onClick={() => handleNavigate('/movies')}>
-          <MovieIcon sx={{ mr: 1.5 }} /> Filmes
+          <ListItemIcon><MovieIcon /></ListItemIcon>
+          <ListItemText>Filmes</ListItemText>
         </MenuItem>
         <MenuItem onClick={() => handleNavigate('/series')}>
-          <TheatersIcon sx={{ mr: 1.5 }} /> Séries
+          <ListItemIcon><TheatersIcon /></ListItemIcon>
+          <ListItemText>Séries</ListItemText>
         </MenuItem>
         <MenuItem onClick={() => handleNavigate('/channels')}>
-          <LiveTvIcon sx={{ mr: 1.5 }} /> TV ao Vivo
+          <ListItemIcon><LiveTvIcon /></ListItemIcon>
+          <ListItemText>TV ao Vivo</ListItemText>
         </MenuItem>
         <MenuItem onClick={() => handleNavigate('/search')}>
-          <SearchIcon sx={{ mr: 1.5 }} /> Buscar
+          <ListItemIcon><SearchIcon /></ListItemIcon>
+          <ListItemText>Buscar</ListItemText>
         </MenuItem>
         <MenuItem onClick={handleOpenCat}>
-          <CategoryIcon sx={{ mr: 1.5 }} /> Categorias
+          <ListItemIcon><CategoryIcon /></ListItemIcon>
+          <ListItemText>Categorias</ListItemText>
         </MenuItem>
       </StyledMenu>
 
@@ -295,14 +319,33 @@ const Navbar = () => {
         anchorEl={anchorElCat}
         open={Boolean(anchorElCat)}
         onClose={handleCloseCat}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+        transformOrigin={{ vertical: 'top', horizontal: 'left' }}
       >
-        {categorias.map((cat) => (
-          <MenuItem 
-            key={cat} 
-            onClick={() => handleNavigate(`/categoria/${cat.toLowerCase()}`)}
-          >
-            {cat}
-          </MenuItem>
+        {Object.entries(categorias).map(([categoria, { icon, subcategorias }]) => (
+          <Box key={categoria}>
+            <MenuItem onClick={() => toggleCategory(categoria)}>
+              <ListItemIcon>{icon}</ListItemIcon>
+              <ListItemText>
+                {categoria.charAt(0).toUpperCase() + categoria.slice(1)}
+              </ListItemText>
+              {expandedCategories[categoria] ? <ExpandLess /> : <ExpandMore />}
+            </MenuItem>
+            <Collapse in={expandedCategories[categoria]} timeout="auto" unmountOnExit>
+              <Box sx={{ pl: 4 }}>
+                {subcategorias.map((subcat) => (
+                  <MenuItem 
+                    key={subcat} 
+                    onClick={() => handleNavigate(`/categoria/${categoria}/${subcat.toLowerCase()}`)}
+                    sx={{ pl: 4 }}
+                  >
+                    {subcat}
+                  </MenuItem>
+                ))}
+              </Box>
+            </Collapse>
+            <Divider />
+          </Box>
         ))}
       </StyledMenu>
     </>
@@ -318,91 +361,91 @@ const Navbar = () => {
             alignItems="center" 
             sx={{ 
               cursor: 'pointer',
-              [theme.breakpoints.down('sm')]: {
-                '& .MuiTypography-root': {
-                  display: 'none'
+              '&:hover': {
+                '& .MuiAvatar-root': {
+                  transform: 'scale(1.1)'
                 }
               }
             }} 
             onClick={() => handleNavigate('/profile')}
           >
             <Avatar sx={{ 
-              width: { xs: 30, sm: 36 }, 
-              height: { xs: 30, sm: 36 }, 
+              width: 32, 
+              height: 32, 
               bgcolor: 'secondary.main',
               transition: 'all 0.3s ease',
-              '&:hover': {
-                transform: 'scale(1.1)'
+              [theme.breakpoints.up('sm')]: {
+                width: 36,
+                height: 36
               }
             }}>
-              {user?.name?.charAt(0).toUpperCase()}
+              {user?.nome?.charAt(0).toUpperCase()}
             </Avatar>
-            <Typography variant="body2" noWrap sx={{ 
-              maxWidth: 120,
-              [theme.breakpoints.down('md')]: {
-                maxWidth: 80
-              }
-            }}>
-              {user?.name || 'Usuário'}
-            </Typography>
+            {!isSmallScreen && (
+              <Typography variant="body2" noWrap sx={{ maxWidth: 120 }}>
+                {user?.nome || 'Usuário'}
+              </Typography>
+            )}
           </Stack>
           <IconButton 
             color="inherit" 
             onClick={handleLogout} 
-            size={isSmallScreen ? 'small' : 'medium'}
+            size="small"
             sx={{
               transition: 'all 0.3s ease',
-              padding: isSmallScreen ? '6px' : '8px',
+              padding: '6px',
               '&:hover': {
                 color: theme.palette.error.main,
                 transform: 'scale(1.1)'
               }
             }}
           >
-            <LogoutIcon fontSize={isSmallScreen ? 'small' : 'medium'} />
+            <LogoutIcon fontSize="small" />
           </IconButton>
         </>
       ) : (
         <>
-          <NavButton 
-            startIcon={<LoginIcon />} 
+          <IconButton
+            color="inherit"
             onClick={() => navigate('/login')}
-            sx={{ 
-              px: { xs: 1, sm: 2 },
-              [theme.breakpoints.down('sm')]: {
-                minWidth: 'auto',
-                padding: '6px'
+            sx={{
+              padding: '6px',
+              '&:hover': {
+                backgroundColor: alpha(theme.palette.common.white, 0.1)
               }
             }}
           >
-            {!isSmallScreen && 'Login'}
-          </NavButton>
+            <LoginIcon fontSize="small" />
+            {!isSmallScreen && (
+              <Typography variant="body2" sx={{ ml: 0.5 }}>
+                Login
+              </Typography>
+            )}
+          </IconButton>
           <Button
             variant="contained"
             color="secondary"
-            startIcon={<RegisterIcon />}
             onClick={() => navigate('/register')}
             sx={{
               borderRadius: 2,
               boxShadow: 'none',
               transition: 'all 0.3s ease',
               fontSize: '0.875rem',
-              padding: { xs: '6px 8px', sm: '8px 16px' },
+              padding: '6px 8px',
               minWidth: 'auto',
               '&:hover': {
                 boxShadow: 'none',
                 backgroundColor: theme.palette.secondary.dark,
                 transform: 'translateY(-2px)'
               },
-              '& .MuiButton-startIcon': {
-                marginRight: { xs: 0, sm: '8px' }
-              },
-              [theme.breakpoints.down('sm')]: {
-                span: {
-                  display: 'none'
+              [theme.breakpoints.up('sm')]: {
+                padding: '8px 16px',
+                '& .MuiButton-startIcon': {
+                  marginRight: '8px'
                 }
               }
             }}
+            startIcon={<RegisterIcon />}
           >
             {!isSmallScreen && 'Registrar'}
           </Button>
@@ -431,7 +474,7 @@ const Navbar = () => {
             <Box
               component="img"
               src="/logo.svg" 
-              alt=""
+              alt="Logo"
               sx={{ 
                 height: { xs: 30, sm: 36, md: 40 },
                 transition: 'all 0.3s ease',
@@ -463,13 +506,30 @@ const Navbar = () => {
           anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
           transformOrigin={{ vertical: 'top', horizontal: 'left' }}
         >
-          {categorias.map((cat) => (
-            <MenuItem 
-              key={cat} 
-              onClick={() => handleNavigate(`/categoria/${cat.toLowerCase()}`)}
-            >
-              {cat}
-            </MenuItem>
+          {Object.entries(categorias).map(([categoria, { icon, subcategorias }]) => (
+            <Box key={categoria}>
+              <MenuItem onClick={() => toggleCategory(categoria)}>
+                <ListItemIcon>{icon}</ListItemIcon>
+                <ListItemText>
+                  {categoria.charAt(0).toUpperCase() + categoria.slice(1)}
+                </ListItemText>
+                {expandedCategories[categoria] ? <ExpandLess /> : <ExpandMore />}
+              </MenuItem>
+              <Collapse in={expandedCategories[categoria]} timeout="auto" unmountOnExit>
+                <Box sx={{ pl: 4 }}>
+                  {subcategorias.map((subcat) => (
+                    <MenuItem 
+                      key={subcat} 
+                      onClick={() => handleNavigate(`/categoria/${categoria}/${subcat.toLowerCase()}`)}
+                      sx={{ pl: 4 }}
+                    >
+                      {subcat}
+                    </MenuItem>
+                  ))}
+                </Box>
+              </Collapse>
+              <Divider />
+            </Box>
           ))}
         </StyledMenu>
       )}

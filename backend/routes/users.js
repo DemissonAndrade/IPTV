@@ -2,7 +2,7 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const { authenticateToken } = require('../middleware/auth');
 // Importar os modelos Mongoose necessários com os nomes corretos
-const { Usuario, Favorito, HistoricoVisualizacao, SessaoUsuario } = require('../config/schema'); // Adicionado
+
 
 const router = express.Router();
 

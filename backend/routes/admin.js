@@ -1,7 +1,7 @@
 const express = require('express');
 const { authenticateToken, requireAdmin } = require('../middleware/auth');
 // Importar todos os modelos Mongoose necessários
-const { Usuario, Canal, Filme, Serie, SessaoUsuario, HistoricoVisualizacao } = require('../config/schema'); // Adicionado
+
 
 const router = express.Router();
 

@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 require('dotenv').config();
 
 const { testConnection } = require('./config/database');
-const { createTables, insertSampleData } = require('./migrations/init');
+const { createTables, insertSampleData, createVodContentTable, populateVodContentTable, isVodContentPopulated } = require('./migrations/init');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -217,6 +217,7 @@ const startServer = async () => {
     } else {
       await createTables();
       await insertSampleData();
+    
     }
 
     const server = app.listen(PORT, '0.0.0.0', () => {
