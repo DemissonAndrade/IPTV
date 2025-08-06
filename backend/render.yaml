@@ -2,7 +2,7 @@ services:
   - type: web
     name: iptv-backend
     env: node
-    buildCommand: npm install
+    buildCommand: cd backend && npm install
     startCommand: node server.js
     healthCheckPath: /health
     envVars:
@@ -25,8 +25,12 @@ services:
       - key: RATE_LIMIT_MAX
         value: 100
 
-databases:
-  - name: iptv-db
-    databaseName: iptv_production
-    user: iptv_user
-    plan: starter
+  - type: web
+    name: iptv-frontend
+    env: static
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: frontend/dist
+    routes:
+      - type: rewrite
+        source: /api/(.*)
+        destination: https://iptv-backend.onrender.com/api/$1

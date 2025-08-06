@@ -6,6 +6,9 @@ const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
 const bodyParser = require('body-parser');
 require('dotenv').config();
+const path = require('path');
+const fs = require('fs');
+
 
 const { testConnection } = require('./config/database');
 const { createTables, insertSampleData, createVodContentTable, populateVodContentTable, isVodContentPopulated } = require('./migrations/init');
@@ -205,6 +208,18 @@ app.use('*', (req, res) => {
     ]
   });
 });
+
+
+// Serve arquivos estáticos do frontend
+const distPath = path.join(__dirname, '../frontend/dist');
+if (fs.existsSync(distPath)) {
+  app.use(express.static(distPath));
+
+  // Rota fallback para SPA do Vite
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(distPath, 'index.html'));
+  });
+}
 
 // Inicialização do servidor
 const startServer = async () => {

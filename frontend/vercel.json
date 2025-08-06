@@ -11,6 +11,6 @@
     }
   ],
   "env": {
-    "VITE_API_URL": "@backend-url"
+    "VITE_API_URL": "https://iptv-ek9y.onrender.com/api"
   }
 }
