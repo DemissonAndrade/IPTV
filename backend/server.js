@@ -16,6 +16,13 @@ const { createTables, insertSampleData, createVodContentTable, populateVodConten
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Otimização de memória para Render
+const maxMemory = process.env.MAX_MEMORY || 512; // em MB
+if (process.env.NODE_ENV === 'production') {
+  const v8 = require('v8');
+  v8.setFlagsFromString(`--max_old_space_size=${maxMemory}`);
+}
+
 // Middleware segurança
 app.use(helmet({
   crossOriginResourcePolicy: { policy: "cross-origin" }
@@ -210,16 +217,7 @@ app.use('*', (req, res) => {
 });
 
 
-// Serve arquivos estáticos do frontend
-const distPath = path.join(__dirname, '../frontend/dist');
-if (fs.existsSync(distPath)) {
-  app.use(express.static(distPath));
-
-  // Rota fallback para SPA do Vite
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(distPath, 'index.html'));
-  });
-}
+// Removido: Frontend será hospedado separadamente no Vercel
 
 // Inicialização do servidor
 const startServer = async () => {

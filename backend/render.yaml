@@ -33,4 +33,4 @@ services:
     routes:
       - type: rewrite
         source: /api/(.*)
-        destination: https://iptv-backend.onrender.com/api/$1
+        destination: https://iptv-backend.onrender.com
