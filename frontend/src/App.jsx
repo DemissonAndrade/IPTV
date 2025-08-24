@@ -28,6 +28,10 @@ import About from './pages/About';
 import Careers from './pages/Careers';
 import Press from './pages/Press';
 import Support from './pages/Support';
+import Help from './pages/Help';
+import Search from './pages/Search';
+import TermsOfUse from './pages/TermsOfUse';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 
 function App() {
   return (
@@ -58,6 +62,10 @@ function App() {
                 <Route path="/careers" element={<Careers />} />
                 <Route path="/press" element={<Press />} />
                 <Route path="/support" element={<Support />} />
+                <Route path="/help" element={<Help />} />
+                <Route path="/search" element={<Search />} />
+                <Route path="/terms" element={<TermsOfUse />} />
+                <Route path="/privacy" element={<PrivacyPolicy />} />
               </Routes>
             </Container>
             <Footer />

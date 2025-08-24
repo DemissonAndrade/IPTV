@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  Box, 
-  Button, 
-  useTheme, 
-  useMediaQuery, 
-  Menu, 
-  MenuItem, 
-  IconButton, 
+import {
+  Box,
+  Button,
+  useTheme,
+  useMediaQuery,
+  Menu,
+  MenuItem,
+  IconButton,
   Typography,
   AppBar,
   Toolbar,
@@ -34,11 +34,12 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { styled, alpha } from '@mui/material/styles';
+import logo from '../assets/logo.png';
 
 const StyledAppBar = styled(AppBar, {
   shouldForwardProp: (prop) => prop !== 'scrolled',
 })(({ theme, scrolled }) => ({
-  background: scrolled 
+  background: scrolled
     ? alpha(theme.palette.primary.main, 0.9)
     : `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.primary.dark} 100%)`,
   boxShadow: scrolled ? '0 4px 10px rgba(0, 0, 0, 0.1)' : '0 4px 20px rgba(0, 0, 0, 0.1)',
@@ -115,34 +116,6 @@ const NavButton = styled(Button)(({ theme }) => ({
   }
 }));
 
-const LogoText = styled(Typography)(({ theme }) => ({
-  fontWeight: 700,
-  background: `linear-gradient(90deg, ${theme.palette.secondary.main}, ${theme.palette.secondary.light})`,
-  WebkitBackgroundClip: 'text',
-  WebkitTextFillColor: 'transparent',
-  textShadow: '0 2px 4px rgba(0,0,0,0.1)',
-  letterSpacing: '1px',
-  transition: 'all 0.3s ease',
-  '&:hover': {
-    transform: 'scale(1.05)'
-  },
-  [theme.breakpoints.up('xl')]: {
-    fontSize: '1.75rem'
-  },
-  [theme.breakpoints.between('lg', 'xl')]: {
-    fontSize: '1.5rem'
-  },
-  [theme.breakpoints.between('md', 'lg')]: {
-    fontSize: '1.25rem'
-  },
-  [theme.breakpoints.down('md')]: {
-    fontSize: '1.1rem'
-  },
-  [theme.breakpoints.down('sm')]: {
-    display: 'none'
-  }
-}));
-
 const Navbar = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
@@ -181,7 +154,7 @@ const Navbar = () => {
         setScrolled(isScrolled);
       }
     };
-    
+
     document.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
       document.removeEventListener('scroll', handleScroll);
@@ -213,11 +186,11 @@ const Navbar = () => {
   };
 
   const renderDesktopMenu = (
-    <Stack 
-      direction="row" 
-      spacing={1} 
-      sx={{ 
-        flexGrow: 1, 
+    <Stack
+      direction="row"
+      spacing={1}
+      sx={{
+        flexGrow: 1,
         ml: { md: 2, lg: 3 },
         overflowX: 'auto',
         '&::-webkit-scrollbar': {
@@ -227,15 +200,15 @@ const Navbar = () => {
         scrollbarWidth: 'none'
       }}
     >
-      <NavButton 
-        startIcon={<MovieIcon />} 
+      <NavButton
+        startIcon={<MovieIcon />}
         onClick={() => handleNavigate('/movies')}
       >
         Filmes
       </NavButton>
 
-      <NavButton 
-        startIcon={<TheatersIcon />} 
+      <NavButton
+        startIcon={<TheatersIcon />}
         onClick={() => handleNavigate('/series')}
       >
         Séries
@@ -249,19 +222,25 @@ const Navbar = () => {
       >
         Categorias
       </NavButton>
-      
-      <NavButton 
-        startIcon={<LiveTvIcon />} 
+
+      <NavButton
+        startIcon={<LiveTvIcon />}
         onClick={() => handleNavigate('/channels')}
       >
         TV ao Vivo
       </NavButton>
 
-      <NavButton 
-        startIcon={<SearchIcon />} 
+      <NavButton
+        startIcon={<SearchIcon />}
         onClick={() => handleNavigate('/search')}
       >
         Buscar
+      </NavButton>
+
+      <NavButton
+        onClick={() => handleNavigate('/about')}
+      >
+        Sobre Nós
       </NavButton>
     </Stack>
   );
@@ -274,7 +253,7 @@ const Navbar = () => {
         color="inherit"
         aria-label="menu"
         onClick={handleMobileMenuOpen}
-        sx={{ 
+        sx={{
           mr: 1,
           padding: '6px',
           '&:hover': {
@@ -334,9 +313,9 @@ const Navbar = () => {
             <Collapse in={expandedCategories[categoria]} timeout="auto" unmountOnExit>
               <Box sx={{ pl: 4 }}>
                 {subcategorias.map((subcat) => (
-                  <MenuItem 
-                    key={subcat} 
-                    onClick={() => handleNavigate(`/categoria/${categoria}/${subcat.toLowerCase()}`)}
+                  <MenuItem
+                    key={subcat}
+                    onClick={() => handleNavigate(`/movies?category=${subcat.toLowerCase()}`)}
                     sx={{ pl: 4 }}
                   >
                     {subcat}
@@ -355,23 +334,23 @@ const Navbar = () => {
     <Stack direction="row" spacing={1} alignItems="center">
       {isAuthenticated ? (
         <>
-          <Stack 
-            direction="row" 
-            spacing={1} 
-            alignItems="center" 
-            sx={{ 
+          <Stack
+            direction="row"
+            spacing={1}
+            alignItems="center"
+            sx={{
               cursor: 'pointer',
               '&:hover': {
                 '& .MuiAvatar-root': {
                   transform: 'scale(1.1)'
                 }
               }
-            }} 
+            }}
             onClick={() => handleNavigate('/profile')}
           >
-            <Avatar sx={{ 
-              width: 32, 
-              height: 32, 
+            <Avatar sx={{
+              width: 32,
+              height: 32,
               bgcolor: 'secondary.main',
               transition: 'all 0.3s ease',
               [theme.breakpoints.up('sm')]: {
@@ -387,9 +366,9 @@ const Navbar = () => {
               </Typography>
             )}
           </Stack>
-          <IconButton 
-            color="inherit" 
-            onClick={handleLogout} 
+          <IconButton
+            color="inherit"
+            onClick={handleLogout}
             size="small"
             sx={{
               transition: 'all 0.3s ease',
@@ -459,11 +438,11 @@ const Navbar = () => {
       <Container maxWidth="xl" sx={{ px: { xs: 1, sm: 2 } }}>
         <Toolbar disableGutters sx={{ minHeight: { xs: '56px', sm: '64px' } }}>
           {isMobile && renderMobileMenu}
-          
-          {/* Logo Aprimorada */}
-          <Box 
+
+          {/* Logo without text */}
+          <Box
             onClick={() => navigate('/')}
-            sx={{ 
+            sx={{
               display: 'flex',
               alignItems: 'center',
               mr: { xs: 1, sm: 2 },
@@ -473,25 +452,24 @@ const Navbar = () => {
           >
             <Box
               component="img"
-              src="/logo.svg" 
+              src={logo}
               alt="Logo"
-              sx={{ 
-                height: { xs: 30, sm: 36, md: 40 },
+              sx={{
+                height: { xs: 55, sm: 70, md: 85, lg: 100 },
                 transition: 'all 0.3s ease',
+                filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3)) brightness(1.1) saturate(1.2)',
                 '&:hover': {
-                  transform: 'rotate(-5deg) scale(1.1)'
+                  transform: 'scale(1.15)',
+                  filter: 'drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4)) brightness(1.2) saturate(1.3)'
                 }
               }}
             />
-            <LogoText variant="h6">
-              StreamFlix
-            </LogoText>
           </Box>
-          
+
           {!isMobile && renderDesktopMenu}
 
           <Box sx={{ flexGrow: 1 }} />
-          
+
           {renderAuthButtons()}
         </Toolbar>
       </Container>
@@ -518,9 +496,13 @@ const Navbar = () => {
               <Collapse in={expandedCategories[categoria]} timeout="auto" unmountOnExit>
                 <Box sx={{ pl: 4 }}>
                   {subcategorias.map((subcat) => (
-                    <MenuItem 
-                      key={subcat} 
-                      onClick={() => handleNavigate(`/categoria/${categoria}/${subcat.toLowerCase()}`)}
+                    <MenuItem
+                      key={subcat}
+                      onClick={() => handleNavigate(
+                        categoria === 'filmes' ? `/movies?category=${subcat.toLowerCase()}` :
+                          categoria === 'series' ? `/series?category=${subcat.toLowerCase()}` :
+                            `/channels?category=${subcat.toLowerCase()}`
+                      )}
                       sx={{ pl: 4 }}
                     >
                       {subcat}

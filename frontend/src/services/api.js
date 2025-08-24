@@ -123,7 +123,11 @@ export const vodService = {
 
   getMoviesStream: async (id) => api.get(`/vod/movies/${id}/stream`),
 
+  getMoviesByCategory: async (category, params = {}) => api.get('/vod/movies', { params: { category, ...params } }),
+
   getSeries: async (params = {}) => api.get('/vod/series', { params }),
+
+  getSeriesByCategory: async (category, params = {}) => api.get('/vod/series', { params: { category, ...params } }),
 
   getSerie: async (id) => api.get(`/vod/series/${id}`),
 

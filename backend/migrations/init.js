@@ -236,101 +236,117 @@ const insertSampleData = async () => {
     await query(`
       INSERT INTO canais (nome, descricao, categoria_id, logo_url, stream_url) 
       VALUES 
-  ('Band', 'Rede Bandeirantes de Televisão', 1, 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Band_logo.svg/200px-Band_logo.svg.png', 'https://example.com/band.m3u8'),
-  ('RedeTV!', 'Canal de TV aberta brasileiro', 1, 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/RedeTV%21_logo_2021.svg/200px-RedeTV%21_logo_2021.svg.png', 'https://example.com/redetv.m3u8'),
-  ('TV Cultura', 'Canal educativo e cultural', 1, 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/TV_Cultura_logo.svg/200px-TV_Cultura_logo.svg.png', 'https://example.com/cultura.m3u8'),
-  ('CNN Brasil', 'Canal de notícias 24 horas', 4, 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/CNN_Brasil_logo.svg/200px-CNN_Brasil_logo.svg.png', 'https://example.com/cnnbrasil.m3u8'),
-  ('BandNews TV', 'Canal de notícias brasileiro', 4, 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/BandNews_TV_logo.svg/200px-BandNews_TV_logo.svg.png', 'https://example.com/bandnews.m3u8'),
-  ('Cartoon Network', 'Desenhos animados e programação infantil', 6, 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Cartoon_Network_2010_logo.svg/200px-Cartoon_Network_2010_logo.svg.png', 'https://example.com/cartoon.m3u8'),
-  ('Discovery Kids', 'Conteúdo educativo e entretenimento infantil', 6, 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Discovery_Kids_logo_2009.svg/200px-Discovery_Kids_logo_2009.svg.png', 'https://example.com/discoverykids.m3u8'),
-  ('Disney Channel', 'Entretenimento infantil e juvenil', 6, 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Disney_Channel_logo_2014.svg/200px-Disney_Channel_logo_2014.svg.png', 'https://example.com/disney.m3u8'),
-  ('HBO', 'Canal premium com filmes e séries', 3, 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/HBO_Logo.svg/200px-HBO_Logo.svg.png', 'https://example.com/hbo.m3u8'),
-  ('Telecine Pipoca', 'Filmes recentes e blockbusters', 3, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Telecine_logo_2020.svg/200px-Telecine_logo_2020.svg.png', 'https://example.com/telecinepipoca.m3u8'),
-  ('Megapix', 'Canal de filmes variados', 3, 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Megapix_2012_logo.svg/200px-Megapix_2012_logo.svg.png', 'https://example.com/megapix.m3u8'),
-  ('Premiere', 'Futebol brasileiro ao vivo', 2, 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Premiere_logo.svg/200px-Premiere_logo.svg.png', 'https://example.com/premiere.m3u8'),
-  ('Sportv', 'Esportes nacionais e internacionais', 2, 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/SporTV_logo_2021.svg/200px-SporTV_logo_2021.svg.png', 'https://example.com/sportv.m3u8'),
-  ('ESPN 2', 'Esportes internacionais', 2, 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/ESPN_wordmark.svg/200px-ESPN_wordmark.svg.png', 'https://example.com/espn2.m3u8'),
-  ('Fox Sports', 'Canais de esportes variados', 2, 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Fox_Sports_logo.svg/200px-Fox_Sports_logo.svg.png', 'https://example.com/foxsports.m3u8'),
-  ('National Geographic', 'Documentários sobre ciência e natureza', 5, 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/National_Geographic_Channel.svg/200px-National_Geographic_Channel.svg.png', 'https://example.com/natgeo.m3u8'),
-  ('History Channel', 'Documentários históricos', 5, 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/History_Logo.svg/200px-History_Logo.svg.png', 'https://example.com/history.m3u8'),
-  ('Animal Planet', 'Programas sobre vida selvagem', 5, 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Animal_Planet_2018_logo.svg/200px-Animal_Planet_2018_logo.svg.png', 'https://example.com/animalplanet.m3u8'),
-  ('TV Brasil', 'Conteúdo cultural e informativo nacional', 1, 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/TV_Brasil_logo_2019.svg/200px-TV_Brasil_logo_2019.svg.png', 'https://example.com/tvbrasil.m3u8'),
-  ('Boomerang', 'Animações clássicas e novas', 6, 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Boomerang_2014_logo.svg/200px-Boomerang_2014_logo.svg.png', 'https://example.com/boomerang.m3u8')
+('Band', 'Rede Bandeirantes de Televisão', 1, 'https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/brazil/band.png', 'https://example.com/band.m3u8'),
+('RedeTV!', 'Canal de TV aberta brasileiro', 1, 'https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/brazil/redetv.png', 'https://example.com/redetv.m3u8'),
+('TV Cultura', 'Canal educativo e cultural', 1, 'https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/brazil/tvcultura.png', 'https://example.com/cultura.m3u8'),
+('Globo', 'Rede Globo de Televisão', 1, 'https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/brazil/globo.png', 'https://example.com/globo.m3u8'),
+('SBT', 'Sistema Brasileiro de Televisão', 1, 'https://images.seeklogo.com/logo-png/25/1/sbt-logo-png_seeklogo-252953.png', 'https://example.com/sbt.m3u8'),
+('Record TV', 'Rede Record de Televisão', 1, 'https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/brazil/record.png', 'https://example.com/record.m3u8'),
+('TV Gazeta', 'Canal de TV aberta brasileiro', 1, 'https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/brazil/gazeta.png', 'https://example.com/gazeta.m3u8'),
+('Rede Vida', 'Canal de TV aberta religioso', 1, 'https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/brazil/redevida.png', 'https://example.com/redevida.m3u8'),
+('TV Brasil', 'Conteúdo cultural e informativo nacional', 1, 'https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/brazil/tvbrasil.png', 'https://example.com/tvbrasil.m3u8'),
+('GloboNews', 'Notícias nacionais 24h', 4, 'https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/brazil/globonews.png', 'https://example.com/globonews.m3u8'),
+
+('CNN Brasil', 'Canal de notícias 24 horas', 4, 'https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/brazil/cnnbrasil.png', 'https://example.com/cnnbrasil.m3u8'),
+('BandNews TV', 'Canal de notícias brasileiro', 4, 'https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/brazil/bandnews.png', 'https://example.com/bandnews.m3u8'),
+('BBC World News', 'Notícias internacionais', 4, 'https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/uk/bbcworldnews.png', 'https://example.com/bbc.m3u8'),
+('Al Jazeera', 'Notícias internacionais em inglês', 4, 'https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/qa/aljazeera.png', 'https://example.com/aljazeera.m3u8'),
+('France 24', 'Notícias internacionais em francês', 4, 'https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/fr/france24.png', 'https://example.com/france24.m3u8'),
+
+('ESPN', 'Esportes internacionais', 2, 'https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/usa/espn.png', 'https://example.com/espn.m3u8'),
+('ESPN 2', 'Esportes internacionais', 2, 'https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/usa/espn2.png', 'https://example.com/espn2.m3u8'),
+('Fox Sports', 'Canais de esportes variados', 2, 'https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/usa/foxsports.png', 'https://example.com/foxsports.m3u8'),
+('Sportv', 'Esportes nacionais e internacionais', 2, 'https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/brazil/sportv.png', 'https://example.com/sportv.m3u8'),
+('Premiere', 'Futebol brasileiro ao vivo', 2, 'https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/brazil/premiere.png', 'https://example.com/premiere.m3u8'),
+('TNT Sports', 'Esportes variados', 2, 'https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/usa/tntsports.png', 'https://example.com/tntsports.m3u8'),
+('ESPN Brasil', 'Esportes nacionais', 2, 'https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/brazil/espnbrasil.png', 'https://example.com/espnbrasil.m3u8'),
+
+('HBO', 'Canal premium com filmes e séries', 3, 'https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/usa/hbo.png', 'https://example.com/hbo.m3u8'),
+('Telecine Pipoca', 'Filmes recentes e blockbusters', 3, 'https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/brazil/telecinepipoca.png', 'https://example.com/telecinepipoca.m3u8'),
+('Telecine Action', 'Filmes de ação e aventura', 3, 'https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/brazil/telecineaction.png', 'https://example.com/telecineaction.m3u8'),
+('Telecine Fun', 'Comédias e filmes leves', 3, 'https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/brazil/telecinefun.png', 'https://example.com/telecinefun.m3u8'),
+('Telecine Touch', 'Filmes românticos e dramas', 3, 'https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/brazil/telecinetouch.png', 'https://example.com/telecinetouch.m3u8'),
+('Megapix', 'Canal de filmes variados', 3, 'https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/brazil/megapix.png', 'https://example.com/megapix.m3u8'),
+('TNT', 'Filmes e séries de ação', 3, 'https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/usa/tnt.png', 'https://example.com/tnt.m3u8'),
+('AXN', 'Séries e filmes de ação', 3, 'https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/usa/axn.png', 'https://example.com/axn.m3u8'),
+
+('Discovery Channel', 'Documentários variados', 5, 'https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/usa/discovery.png', 'https://example.com/discovery.m3u8'),
+('National Geographic', 'Documentários sobre ciência e natureza', 5, 'https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/usa/natgeo.png', 'https://example.com/natgeo.m3u8'),
+('History Channel', 'Documentários históricos', 5, 'https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/usa/history.png', 'https://example.com/history.m3u8'),
+('Animal Planet', 'Programas sobre vida selvagem', 5, 'https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/usa/animalplanet.png', 'https://example.com/animalplanet.m3u8'),
+('Discovery Science', 'Ciência e tecnologia', 5, 'https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/usa/discoveryscience.png', 'https://example.com/discoveryscience.m3u8'),
+
+('Cartoon Network', 'Desenhos animados e programação infantil', 6, 'https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/usa/cartoonnetwork.png', 'https://example.com/cartoon.m3u8'),
+('Disney Channel', 'Entretenimento infantil e juvenil', 6, 'https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/usa/disneychannel.png', 'https://example.com/disney.m3u8'),
+('Discovery Kids', 'Conteúdo educativo e entretenimento infantil', 6, 'https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/brazil/discoverykids.png', 'https://example.com/discoverykids.m3u8'),
+('Nickelodeon', 'Programação infantil e juvenil', 6, 'https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/usa/nickelodeon.png', 'https://example.com/nickelodeon.m3u8'),
+('Boomerang', 'Animações clássicas e novas', 6, 'https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/usa/boomerang.png', 'https://example.com/boomerang.m3u8'),
+('Cartoonito', 'Desenhos educativos e entretenimento infantil', 6, 'https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/usa/cartoonito.png', 'https://example.com/cartoonito.m3u8'),
+('Disney Junior', 'Conteúdo infantil e educativo', 6, 'https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/usa/disneyjunior.png', 'https://example.com/disneyjunior.m3u8'),
+('PBS Kids', 'Programas infantis educativos', 6, 'https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/usa/pbskids.png', 'https://example.com/pbskids.m3u8')
       ON CONFLICT DO NOTHING
     `);
 
-    //-- Inserir filmes (todos com URLs do TMDb)
-    await query(`
-    INSERT INTO filmes (titulo, descricao, ano, duracao, genero, capa_url, destaque) 
-    VALUES
-      ('Avatar: O Caminho da Água', 'Sequência do épico de ficção científica de James Cameron.', 2022, 192, 'Ficção Científica', 'https://image.tmdb.org/t/p/w500/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg', true),
-      ('Top Gun: Maverick', 'Depois de mais de 30 anos de serviço como aviador da Marinha.', 2022, 130, 'Ação', 'https://image.tmdb.org/t/p/w500/62HCnUTziyWcpDaBO2i1DX17ljH.jpg', true),
-      ('Homem-Aranha: Sem Volta Para Casa', 'Peter Parker tem sua identidade secreta revelada.', 2021, 148, 'Ação', 'https://image.tmdb.org/t/p/w500/fVzXp3NwovUlLe7fvoRynCmBPNc.jpg', false),
-      ('Interestelar', 'Exploração espacial para salvar a humanidade.', 2014, 169, 'Ficção Científica', 'https://image.tmdb.org/t/p/w500/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg', true),
-      ('O Poderoso Chefão', 'História da família mafiosa Corleone.', 1972, 175, 'Crime', 'https://image.tmdb.org/t/p/w500/oJagOzBu9Rdd9BrciseCm3U3MCU.jpg', true),
-      ('Pulp Fiction', 'Histórias entrelaçadas do submundo do crime.', 1994, 154, 'Crime', 'https://image.tmdb.org/t/p/w500/d5iIlFn5s0ImszYzBPb8JPIfbXD.jpg', false),
-      ('Matrix', 'Realidade simulada e rebelião contra máquinas.', 1999, 136, 'Ficção Científica', 'https://image.tmdb.org/t/p/w500/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg', true),
-      ('Gladiador', 'Um general romano busca vingança.', 2000, 155, 'Ação', 'https://image.tmdb.org/t/p/w500/ty8TGRuvJLPUmAR1H1nRIsgwvim.jpg', false),
-      ('A Origem', 'Invasão dos sonhos para manipulação.', 2010, 148, 'Ficção Científica', 'https://image.tmdb.org/t/p/w500/s2bT29y0ngXxxu2IA8AOzzXTRhd.jpg', true),
-      ('O Senhor dos Anéis: A Sociedade do Anel', 'Início da jornada para destruir o Anel.', 2001, 178, 'Fantasia', 'https://image.tmdb.org/t/p/w500/56zTpe2xvaA4alU51sRWPoKPYZy.jpg', true),
-      ('Forrest Gump', 'História de vida de um homem simples.', 1994, 142, 'Drama', 'https://image.tmdb.org/t/p/w500/saHP97rTPS5eLmrLQEcANmKrsFl.jpg', false),
-      ('O Rei Leão', 'História do jovem leão Simba.', 1994, 88, 'Animação', 'https://image.tmdb.org/t/p/w500/sKCr78MXSLixwmZ8DyJLrpMsd15.jpg', true),
-      ('Titanic', 'Romance e tragédia no navio Titanic.', 1997, 195, 'Romance', 'https://image.tmdb.org/t/p/w500/9xjZS2rlVxm8SFx8kPC3aIGCOYQ.jpg', true),
-      ('Jurassic Park', 'Parque com dinossauros clonados.', 1993, 127, 'Aventura', 'https://image.tmdb.org/t/p/w500/oU7Oq2kFAAlGqbU4VoAE36g4hoI.jpg', false),
-      ('Os Vingadores', 'Super-heróis se unem para salvar o mundo.', 2012, 143, 'Ação', 'https://image.tmdb.org/t/p/w500/RYMX2wcKCBAr24UyPD7xwmjaTn.jpg', true),
-      ('Guardiões da Galáxia', 'Equipe improvável salva o universo.', 2014, 121, 'Aventura', 'https://image.tmdb.org/t/p/w500/y31QB9kn3XSudA15tV7UWQ9XLuW.jpg', false),
-      ('Star Wars: O Despertar da Força', 'Nova ameaça surge na galáxia.', 2015, 138, 'Ficção Científica', 'https://image.tmdb.org/t/p/w500/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg', true),
-      ('Dunkirk', 'Evacuação na Segunda Guerra Mundial.', 2017, 106, 'Guerra', 'https://image.tmdb.org/t/p/w500/ebSnODDg9lbsMIaWg2uAbjn7TO5.jpg', false),
-      ('Coringa', 'Origem do vilão mais icônico.', 2019, 122, 'Drama', 'https://image.tmdb.org/t/p/w500/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg', true),
-      ('Homem de Ferro', 'História do bilionário que vira super-herói.', 2008, 126, 'Ação', 'https://image.tmdb.org/t/p/w500/78lPtwv72eTNqFW9COBYI0dWDJa.jpg', false),
-      ('Deadpool', 'Anti-herói com humor ácido.', 2016, 108, 'Ação', 'https://image.tmdb.org/t/p/w500/inVq3FRqcYIRl2la8iZikYYxFNR.jpg', true),
-      ('O Hobbit: Uma Jornada Inesperada', 'A aventura começa para Bilbo Bolseiro.', 2012, 169, 'Fantasia', 'https://image.tmdb.org/t/p/w500/6t6IpEv0CTFphH0MzEZSscA9e3v.jpg', true),
-      ('Pantera Negra', 'Herói do reino de Wakanda.', 2018, 134, 'Ação', 'https://image.tmdb.org/t/p/w500/uxzzxijgPIY7slzFvMotPv8wjKA.jpg', false),
-      ('A Bela e a Fera', 'Clássico conto de amor.', 2017, 129, 'Romance', 'https://image.tmdb.org/t/p/w500/hlCUA3bUpkgOULFM9bC8N7hra19.jpg', false),
-      ('Guardiões da Galáxia Vol. 2', 'Continuação das aventuras cósmicas.', 2017, 136, 'Aventura', 'https://image.tmdb.org/t/p/w500/y4MBh0EjBlMuOzv9axM4qJlmhzz.jpg', true),
-      ('Logan', 'Última missão do Wolverine.', 2017, 137, 'Ação', 'https://image.tmdb.org/t/p/w500/f0CtZbae9cXj8bkWdCHzUHx5lsR.jpg', true),
-      ('Cisne Negro', 'Drama psicológico intenso.', 2010, 108, 'Drama', 'https://image.tmdb.org/t/p/w500/bxVxZb45UEpCrDJMwSZuZ4V6Ll0.jpg', true),
-      ('Clube da Luta', 'Luta contra o sistema.', 1999, 139, 'Drama', 'https://image.tmdb.org/t/p/w500/bptfVGEQuv6vDTIMVCHjJ9Dz8PX.jpg', false),
-      ('A Chegada', 'Contato com alienígenas.', 2016, 116, 'Ficção Científica', 'https://image.tmdb.org/t/p/w500/xu9zaAevzQ5nnrsXN6JcahLnG4i.jpg', true),
-      ('Esquadrão Suicida', 'Anti-heróis em missão perigosa.', 2016, 123, 'Ação', 'https://image.tmdb.org/t/p/w500/e1mjopzAS2KNsvpbpahQ1a6SkSn.jpg', false)
-    ON CONFLICT DO NOTHING;
-    `)
-    
-    //-- Inserir séries (todos com URLs do TMDb)
-    await query (`
-    INSERT INTO series (titulo, descricao, ano_inicio, genero, total_temporadas, capa_url, destaque) 
-    VALUES 
-      ('Breaking Bad', 'Um professor de química vira fabricante de metanfetamina.', 2008, 'Crime', 5, 'https://image.tmdb.org/t/p/w500/ggFHVNu6YYI5L9pCfOacjizRGt.jpg', true),
-      ('La Casa de Papel', 'Grupo assalta a Casa da Moeda da Espanha.', 2017, 'Crime', 5, 'https://image.tmdb.org/t/p/w500/reEMJA1uzscCbkpeRJeTT2bjqUp.jpg', true),
-      ('Stranger Things', 'Série de ficção científica ambientada nos anos 80.', 2016, 'Ficção Científica', 4, 'https://image.tmdb.org/t/p/w500/49WJfeN0moxb9IPfGn8AIqMGskD.jpg', true),
-      ('Game of Thrones', 'Famílias nobres lutam pelo Trono de Ferro.', 2011, 'Fantasia', 8, 'https://image.tmdb.org/t/p/w500/u3bZgnGQ9T01sWNhyveQz0wH0Hl.jpg', true),
-      ('The Witcher', 'Baseada nos livros de Andrzej Sapkowski.', 2019, 'Fantasia', 3, 'https://image.tmdb.org/t/p/w500/7vjaCdMw15FEbXyLQTVa04URsPm.jpg', true),
-      ('Dark', 'Mistério de desaparecimentos em uma pequena cidade.', 2017, 'Suspense', 3, 'https://image.tmdb.org/t/p/w500/5jtx6zB7mG0D5XODPA9g6yXJ7Ul.jpg', true),
-      ('Friends', 'Comédia sobre grupo de amigos em Nova York.', 1994, 'Comédia', 10, 'https://image.tmdb.org/t/p/w500/f496cm9enuEsZkSPzCwnTESEK5s.jpg', true),
-      ('The Mandalorian', 'Caçador de recompensas na galáxia Star Wars.', 2019, 'Ação', 3, 'https://image.tmdb.org/t/p/w500/sWgBv7LV2PRoQgkxwlibdGXKz1S.jpg', true),
-      ('Westworld', 'Parque temático com androides conscientes.', 2016, 'Ficção Científica', 4, 'https://image.tmdb.org/t/p/w500/rTh4K5uw9HypmpGslcKd4QfHl93.jpg', true),
-      ('The Office (US)', 'Comédia sobre o cotidiano de escritório.', 2005, 'Comédia', 9, 'https://image.tmdb.org/t/p/w500/qWnJzyZhyy74gjpSjIXWmuk0ifX.jpg', true),
-      ('Black Mirror', 'Contos distópicos sobre a tecnologia.', 2011, 'Suspense', 5, 'https://image.tmdb.org/t/p/w500/f5QpafA4tgf7x5FFXZn0BX8E0hQ.jpg', true),
-      ('Better Call Saul', 'Pré-sequência de Breaking Bad focada no advogado.', 2015, 'Crime', 6, 'https://image.tmdb.org/t/p/w500/1ztP3C9WZsSYYJD56CXfKZtEHrS.jpg', true),
-      ('Narcos', 'História dos cartéis de droga na Colômbia.', 2015, 'Crime', 3, 'https://image.tmdb.org/t/p/w500/o4rJ6uVsWtJQp3W0W4X6rt8U1Yj.jpg', true),
-      ('House of Cards', 'Drama político sobre um congressista americano.', 2013, 'Drama', 6, 'https://image.tmdb.org/t/p/w500/47dpEjqOySHC6UyZyWMulJhWohM.jpg', true),
-      ('Ozark', 'Consultor financeiro se envolve com o crime organizado.', 2017, 'Crime', 4, 'https://image.tmdb.org/t/p/w500/68QJ2Q6FwNqL6KDj3RLi2j0qEB3.jpg', true),
-      ('Sherlock', 'Séries de mistérios com o famoso detetive.', 2010, 'Mistério', 4, 'https://image.tmdb.org/t/p/w500/f9zGxLHGyQ9kfmfF9nrh6OmWIIy.jpg', true),
-      ('Dexter', 'Um analista forense que é também serial killer.', 2006, 'Crime', 8, 'https://image.tmdb.org/t/p/w500/k7VB30oe8FnB8fM6A1Uj3AB4uVv.jpg', true),
-      ('The Crown', 'Drama sobre o reinado da Rainha Elizabeth II.', 2016, 'Drama', 5, 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/ehUMAA3qDR5HNor9DB60g72KNQZ.jpg', true),
-      ('The Boys', 'Super-heróis corruptos e vigilantes.', 2019, 'Ação', 4, 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/dACU11CzrA2aUWAWvlpuP92nmV7.jpg', true),
-      ('Mindhunter', 'Agentes do FBI entrevistam serial killers.', 2017, 'Crime', 2, 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/fbKE87mojpIETWepSbD5Qt741fp.jpg', true),
-      ('True Detective', 'Séries de casos criminais com detetives.', 2014, 'Mistério', 3, 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1fxr55V72a2gtqyn2b8pf6FslOf.jpg', true),
-      ('Lost', 'Sobreviventes de um acidente aéreo em uma ilha misteriosa.', 2004, 'Drama', 6, 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/3NVsXuJg8NZZxVghQ90XYugOcfG.jpg', true),
-      ('The Walking Dead', 'Grupo de sobreviventes em um mundo pós-apocalíptico.', 2010, 'Terror', 11, 'https://image.tmdb.org/t/p/w500/xf9wuDcqlUPWABZNeDKPbZUjWx0.jpg', true),
-      ('Vikings', 'A saga dos guerreiros vikings.', 2013, 'Histórico', 6, 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/bQLrHIRNEkE3PdIWQrZHynQZazu.jpg', true),
-      ('How I Met Your Mother', 'Comédia sobre grupo de amigos e suas vidas.', 2005, 'Comédia', 9, 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/578tlvbrpFwc959bQTT93W2RYA.jpg', true),
-      ('Peaky Blinders', 'Gangue familiar na Inglaterra pós-guerra.', 2013, 'Crime', 6, 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/i0uajcHH9yogXMfDHpOXexIukG9.jpg', true),
-      ('The Expanse', 'Ficção científica e política no sistema solar.', 2015, 'Ficção Científica', 6, 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/8djpxDeWpINnGhjpFXQjnBe6zbx.jpg', true),
-      ('The Simpsons', 'Série animada sobre uma família americana.', 1989, 'Comédia', 34, 'https://image.tmdb.org/t/p/w500/qcr9bBY6MVeLzriKCmJOv1562uY.jpg', true),
-      ('Rick and Morty', 'Série animada de ficção científica e comédia.', 2013, 'Animação', 5, 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/5qfd0e2uMbVInX3YdeFbDsfxi1t.jpg', true)
-    ON CONFLICT DO NOTHING;
-    `);
+    // Verificar se já existem filmes antes de inserir
+    const filmesCount = await query('SELECT COUNT(*) as count FROM filmes');
+    if (parseInt(filmesCount.rows[0].count) === 0) {
+      console.log('🔄 Inserindo filmes de exemplo...');
+
+      await query(`
+        INSERT INTO filmes (titulo, descricao, ano, duracao, genero, capa_url, destaque) 
+        VALUES
+          ('Avatar: O Caminho da Água', 'Sequência do épico de ficção científica de James Cameron.', 2022, 192, 'Ficção Científica', 'https://image.tmdb.org/t/p/w500/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg', true),
+          ('Top Gun: Maverick', 'Depois de mais de 30 anos de serviço como aviador da Marinha.', 2022, 130, 'Ação', 'https://image.tmdb.org/t/p/w500/62HCnUTziyWcpDaBO2i1DX17ljH.jpg', true),
+          ('Homem-Aranha: Sem Volta Para Casa', 'Peter Parker tem sua identidade secreta revelada.', 2021, 148, 'Ação', 'https://image.tmdb.org/t/p/w500/fVzXp3NwovUlLe7fvoRynCmBPNc.jpg', false),
+          ('Interestelar', 'Exploração espacial para salvar a humanidade.', 2014, 169, 'Ficção Científica', 'https://image.tmdb.org/t/p/w500/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg', true),
+          ('O Poderoso Chefão', 'História da família mafiosa Corleone.', 1972, 175, 'Crime', 'https://image.tmdb.org/t/p/w500/oJagOzBu9Rdd9BrciseCm3U3MCU.jpg', true),
+          ('Pulp Fiction', 'Histórias entrelaçadas do submundo do crime.', 1994, 154, 'Crime', 'https://image.tmdb.org/t/p/w500/d5iIlFn5s0ImszYzBPb8JPIfbXD.jpg', false),
+          ('Matrix', 'Realidade simulada e rebelião contra máquinas.', 1999, 136, 'Ficção Científica', 'https://image.tmdb.org/t/p/w500/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg', true),
+          ('Gladiador', 'Um general romano busca vingança.', 2000, 155, 'Ação', 'https://image.tmdb.org/t/p/w500/ty8TGRuvJLPUmAR1H1nRIsgwvim.jpg', false),
+          ('A Origem', 'Invasão dos sonhos para manipulação.', 2010, 148, 'Ficção Científica', 'https://image.tmdb.org/t/p/w500/s2bT29y0ngXxxu2IA8AOzzXTRhd.jpg', true),
+          ('O Senhor dos Anéis: A Sociedade do Anel', 'Início da jornada para destruir o Anel.', 2001, 178, 'Fantasia', 'https://image.tmdb.org/t/p/w500/56zTpe2xvaA4alU51sRWPoKPYZy.jpg', true),
+          ('Forrest Gump', 'História de vida de um homem simples.', 1994, 142, 'Drama', 'https://image.tmdb.org/t/p/w500/saHP97rTPS5eLmrLQEcANmKrsFl.jpg', false),
+          ('O Rei Leão', 'História do jovem leão Simba.', 1994, 88, 'Animação', 'https://image.tmdb.org/t/p/w500/sKCr78MXSLixwmZ8DyJLrpMsd15.jpg', true),
+          ('Titanic', 'Romance e tragédia no navio Titanic.', 1997, 195, 'Romance', 'https://image.tmdb.org/t/p/w500/9xjZS2rlVxm8SFx8kPC3aIGCOYQ.jpg', true),
+          ('Jurassic Park', 'Parque com dinossauros clonados.', 1993, 127, 'Aventura', 'https://image.tmdb.org/t/p/w500/oU7Oq2kFAAlGqbU4VoAE36g4hoI.jpg', false),
+          ('Os Vingadores', 'Super-heróis se unem para salvar o mundo.', 2012, 143, 'Ação', 'https://image.tmdb.org/t/p/w500/RYMX2wcKCBAr24UyPD7xwmjaTn.jpg', true),
+          ('Guardiões da Galáxia', 'Equipe improvável salva o universo.', 2014, 121, 'Aventura', 'https://image.tmdb.org/t/p/w500/y31QB9kn3XSudA15tV7UWQ9XLuW.jpg', false),
+          ('Star Wars: O Despertar da Força', 'Nova ameaça surge na galáxia.', 2015, 138, 'Ficção Científica', 'https://image.tmdb.org/t/p/w500/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg', true),
+          ('Dunkirk', 'Evacuação na Segunda Guerra Mundial.', 2017, 106, 'Guerra', 'https://image.tmdb.org/t/p/w500/ebSnODDg9lbsMIaWg2uAbjn7TO5.jpg', false),
+          ('Coringa', 'Origem do vilão mais icônico.', 2019, 122, 'Drama', 'https://image.tmdb.org/t/p/w500/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg', true),
+          ('Homem de Ferro', 'História do bilionário que vira super-herói.', 2008, 126, 'Ação', 'https://image.tmdb.org/t/p/w500/78lPtwv72eTNqFW9COBYI0dWDJa.jpg', false),
+          ('Deadpool', 'Anti-herói com humor ácido.', 2016, 108, 'Ação', 'https://image.tmdb.org/t/p/w500/inVq3FRqcYIRl2la8iZikYYxFNR.jpg', true),
+          ('O Hobbit: Uma Jornada Inesperada', 'A aventura começa para Bilbo Bolseiro.', 2012, 169, 'Fantasia', 'https://image.tmdb.org/t/p/w500/6t6IpEv0CTFphH0MzEZSscA9e3v.jpg', true),
+          ('Pantera Negra', 'Herói do reino de Wakanda.', 2018, 134, 'Ação', 'https://image.tmdb.org/t/p/w500/uxzzxijgPIY7slzFvMotPv8wjKA.jpg', false),
+          ('A Bela e a Fera', 'Clássico conto de amor.', 2017, 129, 'Romance', 'https://image.tmdb.org/t/p/w500/hlCUA3bUpkgOULFM9bC8N7hra19.jpg', false),
+          ('Guardiões da Galáxia Vol. 2', 'Continuação das aventuras cósmicas.', 2017, 136, 'Aventura', 'https://image.tmdb.org/t/p/w500/y4MBh0EjBlMuOzv9axM4qJlmhzz.jpg', true),
+          ('Logan', 'Última missão do Wolverine.', 2017, 137, 'Ação', 'https://image.tmdb.org/t/p/w500/f0CtZbae9cXj8bkWdCHzUHx5lsR.jpg', true),
+          ('Cisne Negro', 'Drama psicológico intenso.', 2010, 108, 'Drama', 'https://image.tmdb.org/t/p/w500/bxVxZb45UEpCrDJMwSZuZ4V6Ll0.jpg', true),
+          ('Clube da Luta', 'Luta contra o sistema.', 1999, 139, 'Drama', 'https://image.tmdb.org/t/p/w500/bptfVGEQuv6vDTIMVCHjJ9Dz8PX.jpg', false),
+          ('A Chegada', 'Contato com alienígenas.', 2016, 116, 'Ficção Científica', 'https://image.tmdb.org/t/p/w500/xu9zaAevzQ5nnrsXN6JcahLnG4i.jpg', true),
+          ('Esquadrão Suicida', 'Anti-heróis em missão perigosa.', 2016, 123, 'Ação', 'https://image.tmdb.org/t/p/w500/e1mjopzAS2KNsvpbpahQ1a6SkSn.jpg', false)
+      `);
+    } else {
+      console.log('✅ Tabela filmes já possui dados, pulando...');
+    }
+
+    // Verificar se já existem séries antes de inserir
+    const seriesCount = await query('SELECT COUNT(*) as count FROM series');
+    if (parseInt(seriesCount.rows[0].count) === 0) {
+      console.log('🔄 Inserindo séries de exemplo...');
+
+      await query(`
+        INSERT INTO series (titulo, descricao, ano_inicio, genero, total_temporadas, capa_url, destaque) 
+        VALUES 
+          ('Breaking Bad', 'Um professor de química vira fabricante de metanfetamina.', 2008, 'Crime', 5, 'https://image.tmdb.org/t/p/w500/ggFHVNu6YYI5L9pCfOacjizRGt.jpg', true),
+          ('La Casa de Papel', 'Grupo assalta a Casa da Moeda da Espanha.', 2017, 'Crime', 5, 'https://image.tmdb.org/t/p/w500/reEMJA1uzscCbkpeRJeTT2bjqUp.jpg', true),
+          ('Stranger Things', 'Série de ficção científica ambientada nos anos 80.', 2016, 'Ficção Científica', 4, 'https://image.tmdb.org/t/p/w500/49WJfeN0moxb9IPfGn8AIqMGskD.jpg', true),
+          ('Game of Thrones', 'Famílias nobres lutam pelo Trono de Ferro.', 2011, 'Fantasia', 8, 'https://image.tmdb.org/t/p/w500/u3bZgnGQ9T01sWNhyveQz0wH0Hl.jpg', true),
+          ('The Witcher', 'Baseada nos livros de Andrzej Sapkowski.', 2019, 'Fantasia', 3, 'https://image.tmdb.org/t/p/w500/7vjaCdMw15FEbXyLQTVa04URsPm.jpg', true)
+      `);
+    } else {
+      console.log('✅ Tabela series já possui dados, pulando...');
+    }
 
     // Inserir usuário administrador
     const bcrypt = require('bcryptjs');
@@ -341,6 +357,7 @@ const insertSampleData = async () => {
       VALUES ('Administrador', 'admin@iptvpro.com', $1, 'admin')
       ON CONFLICT (email) DO NOTHING
     `, [hashedPassword]);
+
 
     console.log('✅ Dados de exemplo inseridos com sucesso!');
     console.log('👤 Usuário admin criado: admin@iptvpro.com / admin123');
@@ -355,7 +372,7 @@ const insertSampleData = async () => {
 const createVodContentTable = async () => {
   try {
     console.log('🔄 Criando tabela vod_content...');
-    
+
     // Criar a tabela vod_content que consolida filmes e séries
     await query(`
       CREATE TABLE IF NOT EXISTS vod_content (
@@ -411,7 +428,7 @@ const populateVodContentTable = async () => {
     }
 
     console.log('🔄 Populando tabela vod_content...');
-                    
+
     console.log('✅ Tabela vod_content populada com sucesso!');
     return true;
   } catch (error) {
@@ -424,4 +441,4 @@ module.exports = {
   createTables,
   insertSampleData,
   populateVodContentTable,
-}
+};

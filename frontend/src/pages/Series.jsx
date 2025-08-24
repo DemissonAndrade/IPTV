@@ -18,6 +18,8 @@ import {
 import { vodService } from '@/services/api';
 import { useNavigate } from 'react-router-dom';
 
+import { useSearchParams } from 'react-router-dom';
+
 const Series = () => {
   const [series, setSeries] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -29,12 +31,19 @@ const Series = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
+  const [searchParams] = useSearchParams();
+  const category = searchParams.get('category');
 
   useEffect(() => {
     const loadSeries = async () => {
       setLoading(true);
       try {
-        const response = await vodService.getSeries({ page, limit });
+        let response;
+        if (category) {
+          response = await vodService.getSeriesByCategory(category, { page, limit });
+        } else {
+          response = await vodService.getSeries({ page, limit });
+        }
         setSeries(response.data || []);
         setTotalPages(response.pagination?.totalPages || 1);
         setError(null);
@@ -47,7 +56,7 @@ const Series = () => {
     };
 
     loadSeries();
-  }, [page]);
+  }, [page, category]);
 
   const handleSerieClick = (serieId) => {
     navigate(`/vod/${serieId}`);

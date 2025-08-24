@@ -1,12 +1,21 @@
 const { query } = require('../config/database');
+const { CacheService } = require('../middleware/cache');
 
 exports.getChannels = async (req, res) => {
   try {
-    let { page = 1, limit = 20, search, categoria, qualidade, idioma, pais } = req.query;
+    let { page = 1, limit = 50, search, categoria, qualidade, idioma, pais } = req.query;
     page = parseInt(page);
-    limit = parseInt(limit);
+    limit = Math.min(parseInt(limit), 100); // Limite máximo de 100 itens por página
     const offset = (page - 1) * limit;
 
+    // Verificar cache
+    const cacheKey = CacheService.getChannelsKey({ search, categoria, qualidade, idioma, pais }, page, limit);
+    const cached = CacheService.get(cacheKey);
+    if (cached) {
+      return res.json(cached);
+    }
+
+    // Query otimizada com índices
     let baseQuery = `
       SELECT c.id, c.nome, c.logo_url, c.qualidade, c.categoria_id, cat.nome AS categoria_nome, c.idioma, c.pais
       FROM canais c
@@ -17,6 +26,7 @@ exports.getChannels = async (req, res) => {
     const params = [];
     let paramIndex = 1;
 
+    // Busca com full-text search se disponível
     if (search) {
       baseQuery += ` AND (c.nome ILIKE $${paramIndex} OR c.descricao ILIKE $${paramIndex})`;
       params.push(`%${search}%`);
@@ -47,17 +57,45 @@ exports.getChannels = async (req, res) => {
       paramIndex++;
     }
 
-    const countQuery = `SELECT COUNT(*) FROM (${baseQuery}) AS count_table`;
-    const countResult = await query(countQuery, params);
-    const total = parseInt(countResult.rows[0].count, 10);
+    // Contagem otimizada
+    const countQuery = `SELECT COUNT(*) as total FROM canais c WHERE 1=1`;
+    const countParams = [...params];
+    let countIndex = 1;
+    
+    // Reconstruir WHERE para contagem
+    let countWhere = '';
+    if (search) {
+      countWhere += ` AND (c.nome ILIKE $${countIndex} OR c.descricao ILIKE $${countIndex})`;
+      countIndex++;
+    }
+    if (categoria) {
+      countWhere += ` AND c.categoria_id = $${countIndex}`;
+      countIndex++;
+    }
+    if (qualidade) {
+      countWhere += ` AND c.qualidade = $${countIndex}`;
+      countIndex++;
+    }
+    if (idioma) {
+      countWhere += ` AND c.idioma = $${countIndex}`;
+      countIndex++;
+    }
+    if (pais) {
+      countWhere += ` AND c.pais = $${countIndex}`;
+      countIndex++;
+    }
+
+    const countResult = await query(countQuery + countWhere, countParams);
+    const total = parseInt(countResult.rows[0].total, 10);
     const totalPages = Math.ceil(total / limit);
 
+    // Query principal com limite
     baseQuery += ` ORDER BY c.nome ASC LIMIT $${paramIndex} OFFSET $${paramIndex + 1}`;
     params.push(limit, offset);
 
     const result = await query(baseQuery, params);
 
-    res.json({
+    const response = {
       success: true,
       data: result.rows,
       pagination: {
@@ -66,7 +104,12 @@ exports.getChannels = async (req, res) => {
         total,
         totalPages,
       },
-    });
+    };
+
+    // Cachear resposta
+    CacheService.set(cacheKey, response, 300); // 5 minutos
+
+    res.json(response);
   } catch (error) {
     console.error('Erro ao obter canais:', error);
     res.status(500).json({ success: false, error: 'Erro interno do servidor' });
